@@ -1,8 +1,25 @@
 import React from "react";
 import styled from 'styled-components'
 
+const MenuItem = ({ title, imageUrl, size }) => (
+    <MIStyle className={`${size} menu-item`}>
+      <div
+        className='background-image'
+        style={{
+          backgroundImage: `url(${imageUrl})`
+        }}
+      />
+      <div className='content'>
+        <h1 className='title'>{title.toUpperCase()}</h1>
+        <span className='subtitle'>SHOP NOW</span>
+      </div>
+    </MIStyle>
+  );
+
+export default MenuItem
+
 const MIStyle = styled.div`
-  min-width: 30%;
+ min-width: 30%;
   height: 240px;
   flex: 1 1 auto;
   display: flex;
@@ -10,10 +27,41 @@ const MIStyle = styled.div`
   justify-content: center;
   border: 1px solid black;
   margin: 0 7.5px 15px;
-  &:first-child {margin-right: 7.5px;}
-  &:last-child {margin-left: 7.5px;}
-`
-const Content = styled.div`
+  overflow: hidden;
+
+  &:hover {
+    cursor: pointer;
+
+    & .background-image {
+      transform: scale(1.1);
+      transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+    }
+
+    & .content {
+      opacity: 0.9;
+    }
+  }
+
+  &.large {
+    height: 380px;
+  }
+
+  &:first-child {
+    margin-right: 7.5px;
+  }
+
+  &:last-child {
+    margin-left: 7.5px;
+  }
+
+  .background-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .content {
     height: 90px;
     padding: 0 25px;
     display: flex;
@@ -21,29 +69,20 @@ const Content = styled.div`
     align-items: center;
     justify-content: center;
     border: 1px solid black;
-`
+    background-color: white;
+    opacity: 0.7;
+    position: absolute;
 
-const Title = styled.h1`
+    .title {
       font-weight: bold;
-      margin-bottom: 6px;
+      margin: 0 6px 0;
       font-size: 22px;
       color: #4a4a4a;
-`
+    }
 
-const Subtitle = styled.span`
+    .subtitle {
       font-weight: lighter;
       font-size: 16px;
+    }
+  }
 `
-
-const MenuItem = ({title}) => {
-    return (
-        <MIStyle>
-            <Content>
-                <Title>{title}</Title>
-                <Subtitle>SHOP NOW</Subtitle>
-            </Content>
-        </MIStyle>
-    )
-}
-
-export default MenuItem
