@@ -36,7 +36,7 @@ class DirectoryMenu extends React.Component {
                     linkUrl: 'info/news'
                 },
                 {
-                  title: 'films',
+                  title: 'selected films',
                   imageUrl: 'https://i.ibb.co/1rqTmMB/films.jpg',
                   id: 4,
                   size: 'large',

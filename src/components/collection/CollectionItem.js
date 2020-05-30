@@ -26,7 +26,7 @@ const CItemStyle = styled.div`
   align-items: center;
 
   .image {
-    width: 75%;
+    width: 80%;
     height: 95%;
     background-size: cover;
     background-position: center;

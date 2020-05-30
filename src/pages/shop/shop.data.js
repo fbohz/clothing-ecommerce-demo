@@ -6,9 +6,9 @@ export const SHOP_DATA =  [
       items: [
         {
           id: 1,
-          name: 'Calcifer Toy (Limited Edition)',
+          name: 'Calcifer Toy (Handsewn)',
           imageUrl: 'https://i.ibb.co/BydFmjr/shop.jpg',
-          price: 11
+          price: 10
         },
         {
           id: 2,
@@ -62,7 +62,7 @@ export const SHOP_DATA =  [
     },
     {
         id: 2,
-        title: 'Selected Films Sale (Digital + BluRay/DVD + Movie Poster)',
+        title: 'Selected Films (Inc. Digital + BluRay/DVD + Movie Poster)',
         routeName: 'films',
         items: [
           {
