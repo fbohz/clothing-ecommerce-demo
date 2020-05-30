@@ -18,38 +18,33 @@ class DirectoryMenu extends React.Component {
         this.state = {
             sections: [
                 {
-                  title: 'hats',
-                  imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
+                  title: 'memorabilia',
+                  imageUrl: 'https://i.ibb.co/BydFmjr/shop.jpg',
                   id: 1,
-                  linkUrl: 'shop/hats'
+                  linkUrl: 'shop/memorabilia',
+                  subtitle: 'SHOP NOW'
                 },
                 {
-                  title: 'jackets',
-                  imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
-                  id: 2,
-                  linkUrl: 'shop/jackets'
+                    title: 'characters',
+                    imageUrl: 'https://i.ibb.co/xHSCYkX/characters.jpg',
+                    id: 2,
+                    linkUrl: 'info/characters'
                 },
                 {
-                  title: 'sneakers',
-                  imageUrl: 'https://i.ibb.co/0jqHpnp/sneakers.png',
-                  id: 3,
-                  linkUrl: 'shop/sneakers'
+                    title: 'latest news',
+                    imageUrl: 'https://i.ibb.co/bRVtBYz/news-nausicaa.jpg',
+                    id: 3,
+                    linkUrl: 'info/news'
                 },
                 {
-                  title: 'womens',
-                  imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png',
-                  size: 'large',
+                  title: 'films',
+                  imageUrl: 'https://i.ibb.co/1rqTmMB/films.jpg',
                   id: 4,
-                  linkUrl: 'shop/womens'
-                },
-                {
-                  title: 'mens',
-                  imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
                   size: 'large',
-                  id: 5,
-                  linkUrl: 'shop/mens'
-                }
-              ]
+                  linkUrl: 'shop/films',
+                  subtitle: 'SHOP NOW'
+                },
+            ]
         }
     }
 
@@ -59,8 +54,8 @@ class DirectoryMenu extends React.Component {
             <DMStyle>
                     {
                         this.state.sections.map(
-                           ( {title, imageUrl, id, size}) => {
-                                return  <MenuItem title={title} key={id} imageUrl={imageUrl} size={size}/>
+                           ( {id, ...otherSectionProps}) => {
+                                return  <MenuItem key={id} {...otherSectionProps}/>
                            })
                     }
             </DMStyle>

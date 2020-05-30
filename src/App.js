@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components'
 import Home from './pages/Home'
+import { Route, Switch } from 'react-router-dom'
 
 function App() {
   return (
     <AppStyle>
-      <Home>
-      </Home>
+      <Switch>
+        <Route exact path="/" component={Home}/>
+      </Switch>
     </AppStyle>
   );
 }
