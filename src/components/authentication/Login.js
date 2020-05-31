@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import FormInput from './FormInput'
 import CustomButton from '../CustomButton'
 
+import { signInWithGoogle } from '../../firebase/firebase.utils'
+
 class Login extends React.Component {
     constructor(props) {
         super(props)
@@ -29,7 +31,7 @@ class Login extends React.Component {
             <LoginStyle>
                 <br/>
                 <h2>I already have an account</h2>
-                <span>Sign in with your email and password</span>
+                <span>Login with your email and password</span>
 
                 <form onSubmit={this.handleSubmit}>
                     <FormInput 
@@ -39,7 +41,13 @@ class Login extends React.Component {
                     label="email"
                     handleChange={this.handleChange} required />
                     <FormInput name="password" type="password" value={this.state.password} handleChange={this.handleChange} label="password" required />
-                    <CustomButton type="submit">Sign In</CustomButton>
+
+                    <ButtonsBarContainer>
+                        <CustomButton type='submit'> Login </CustomButton>
+                        <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
+                        Login with Google
+                        </CustomButton>
+                    </ButtonsBarContainer>
                 </form>
             </LoginStyle>
         )
@@ -49,12 +57,16 @@ class Login extends React.Component {
 export default Login
 
 const LoginStyle = styled.div`
-    width: 30vw;
+    width: 380px;
     display: flex;
     flex-direction: column;
 
     .title {
         margin: 10px 0;
     }
-
 `
+
+const ButtonsBarContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;

@@ -3,7 +3,9 @@ import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 import {ReactComponent as Logo } from '../../src/assets/ghibli.svg'
 
-const Header = () => {
+import { auth } from '../firebase/firebase.utils'
+
+const Header = ({ currentUser }) => {
     return (
         <HeaderStyle>
             <Link to="/" className="logo-container">
@@ -12,6 +14,12 @@ const Header = () => {
             <div className="options">
                  <Link to="/shop" className="option" >SHOP</Link>
                  <Link to="/shop" className="option" >ABOUT</Link>
+                 {
+                   currentUser ? 
+                   <div className="option" onClick={() => auth.signOut()}>LOGOUT</div> 
+                   : 
+                   <Link className="option" to="/signin">LOGIN</Link>
+                 }
             </div>
         </HeaderStyle>
     )
@@ -45,6 +53,7 @@ const HeaderStyle = styled.div`
 
     .option {
       padding: 10px 15px;
+      cursor: pointer;
     }
   }
 `
