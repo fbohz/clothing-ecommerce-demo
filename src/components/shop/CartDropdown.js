@@ -1,20 +1,34 @@
 import React from "react";
 import styled from 'styled-components'
+import {connect} from 'react-redux'
 
 import CustomButton from '../CustomButton'
+import CartItem from './CartItem'
+import {selectCartItems} from '../../utils/selectors'
 
-const CartDropdown = () => {
+
+const CartDropdown = ({cartItems}) => {
     return (
         <CartDropdownContainer>
-        <CartItemsContainer>
-
-        </CartItemsContainer>
+            <CartItemsContainer>
+            {cartItems.length ? (
+                cartItems.map(cartItem => (
+                <CartItem key={cartItem.id} item={cartItem} />
+                ))
+            ) : (
+                <EmptyMessageContainer>Your cart is empty</EmptyMessageContainer>
+            )}
+            </CartItemsContainer>
         <CartDropdownButton>GO TO CHECKOUT</CartDropdownButton>
         </CartDropdownContainer>
     )
 }
 
-export default CartDropdown
+const msp = ({cart: { cartItems } }) => ({
+    cartItems,
+})
+
+export default connect(msp)(CartDropdown)
 
 const CartDropdownContainer = styled.div`
   position: absolute;

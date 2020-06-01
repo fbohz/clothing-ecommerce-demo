@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { ReactComponent as ShoppingIcon } from '../../assets/cart.svg'
 import {connect} from 'react-redux'
 import {toggleCartHidden} from '../../redux/actions/actions'
+import {selectCartItemsCount} from '../../utils/selectors'
 
 const CartIcon = ({ toggleCartHidden, itemCount }) => (
     <CartContainer onClick={toggleCartHidden}>
@@ -14,6 +15,10 @@ const CartIcon = ({ toggleCartHidden, itemCount }) => (
 
 const mdp = dispatch => ({
     toggleCartHidden: () => dispatch(toggleCartHidden())
+})
+
+const msp = state => ({
+  itemCount: selectCartItemsCount(state)
 })
   
 export default connect(null, mdp)(CartIcon)

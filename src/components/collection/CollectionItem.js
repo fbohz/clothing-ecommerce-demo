@@ -13,7 +13,7 @@ const CollectionItem = ({ item, addItem }) => {
       <BackgroundImage className='image' imageUrl={imageUrl} />
       <CollectionFooterContainer>
         <NameContainer>{name}</NameContainer>
-        <PriceContainer>{price}</PriceContainer>
+        <PriceContainer>${price}</PriceContainer>
       </CollectionFooterContainer>
       <AddButton onClick={() => addItem(item)} inverted>
         Add to cart
@@ -29,7 +29,7 @@ const mdp = dispatch => ({
 export default connect(null, mdp)(CollectionItem)
 
 const CollectionItemContainer = styled.div`
-  width: 22vw;
+  width: 16vw;
   display: flex;
   flex-direction: column;
   height: 350px;
