@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import {connect} from 'react-redux'
 
 import Home from './pages/Home'
@@ -46,18 +46,23 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route path="/shop" component={ShopPage}/>
-          <Route path="/signin" component={LoginLogout}/>
+          <Route exact path="/signin" render={() => this.props.currentUser ?  <Redirect to="/" /> : <LoginLogout />
+          } />
         </Switch>
       </AppStyle>
     );
   }
 }
 
+const msp = ({ user }) => ({
+  currentUser: user.currentUser,
+})
+
 const mdp = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 })
 
-export default connect(null, mdp)(App);
+export default connect(msp, mdp)(App);
 
 
 const AppStyle = styled.div`
