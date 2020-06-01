@@ -24,8 +24,8 @@ const CartDropdown = ({cartItems}) => {
     )
 }
 
-const msp = ({cart: { cartItems } }) => ({
-    cartItems,
+const msp = (state) => ({
+    cartItems: selectCartItems(state),
 })
 
 export default connect(msp)(CartDropdown)

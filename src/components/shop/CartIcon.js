@@ -21,7 +21,7 @@ const msp = state => ({
   itemCount: selectCartItemsCount(state)
 })
   
-export default connect(null, mdp)(CartIcon)
+export default connect(msp, mdp)(CartIcon)
 
 const CartContainer = styled.div`
   width: 45px;
