@@ -66,7 +66,7 @@ export const SHOP_DATA =  [
         routeName: 'films',
         items: [
           {
-            id: 13,
+            id: 10,
             name: 'Nausicaä of the Valley of the Wind',
             imageUrl: 'https://www.studioghibli.com.au/wp-content/uploads/2017/07/1475-title-treatment-portrait-key-art-normal-medium-683x1024.jpg',
             price: 25,
@@ -76,7 +76,7 @@ export const SHOP_DATA =  [
             release_date: "1984",
           },  
           {
-            id: 1,
+            id: 11,
             name: 'Castle In the Sky',
             imageUrl: 'https://www.studioghibli.com.au/wp-content/uploads/2017/07/1476-title-treatment-portrait-key-art-normal-medium-683x1024.jpg',
             price: 25,
@@ -86,7 +86,7 @@ export const SHOP_DATA =  [
             release_date: "1986",
           },
           {
-            id: 2,
+            id: 12,
             name: 'Grave of the Fireflies',
             imageUrl: 'https://www.studioghibli.com.au/wp-content/uploads/2017/07/1100-title-treatment-portrait-key-art-normal-medium-683x1024.jpg',
             price: 39,
@@ -96,7 +96,7 @@ export const SHOP_DATA =  [
             release_date: "1988",
           },
           {
-            id: 3,
+            id: 13,
             name: "My Neighbor Totoro",
             imageUrl: 'https://www.studioghibli.com.au/wp-content/uploads/2017/07/poster_my_neighbor_totoro-683x1024.jpg',
             price: 18,
@@ -106,7 +106,7 @@ export const SHOP_DATA =  [
             release_date: "1988",
           },
           {
-            id: 4,
+            id: 14,
             name: "Kiki's Delivery Service",
             imageUrl: 'https://www.studioghibli.com.au/wp-content/uploads/2017/07/poster_kiki-683x1024.jpg',
             price: 18,
@@ -116,7 +116,7 @@ export const SHOP_DATA =  [
             release_date: "1989",
           },
           {
-            id: 5,
+            id: 15,
             name: "Porco Rosso",
             imageUrl: 'https://www.studioghibli.com.au/wp-content/uploads/2017/07/poster_porco_rosso-683x1024.jpg',
             price: 18,
@@ -126,7 +126,7 @@ export const SHOP_DATA =  [
             release_date: "1992",
           },
           {
-            id: 6,
+            id: 16,
             name: "Whisper of the Heart",
             imageUrl: 'https://www.studioghibli.com.au/wp-content/uploads/2017/07/1483-title-treatment-portrait-key-art-normal-medium-683x1024.jpg',
             price: 25,
@@ -136,7 +136,7 @@ export const SHOP_DATA =  [
             release_date: "1995",
           },
           {
-            id: 7,
+            id: 17,
             name: "Princess Mononoke",
             imageUrl: 'https://www.studioghibli.com.au/wp-content/uploads/2017/06/poster_mononoke-683x1024.jpg',
             price: 18,
@@ -146,7 +146,7 @@ export const SHOP_DATA =  [
             release_date: "1997",
           },
           {
-            id: 8,
+            id: 18,
             name: "Spirited Away",
             imageUrl: 'https://www.studioghibli.com.au/wp-content/uploads/2017/07/1055-title-treatment-portrait-key-art-normal-medium-683x1024.jpg',
             price: 25,
@@ -156,7 +156,7 @@ export const SHOP_DATA =  [
             release_date: "2001",
           },
           {
-            id: 9,
+            id: 19,
             name: "The Cat Returns",
             imageUrl: 'https://www.studioghibli.com.au/wp-content/uploads/2017/07/poster_cat_returns-683x1024.jpg',
             price: 18,
@@ -166,7 +166,7 @@ export const SHOP_DATA =  [
             release_date: "2002",
           },
           {
-            id: 10,
+            id: 20,
             name: "Howl's Moving Castle",
             imageUrl: 'https://www.studioghibli.com.au/wp-content/uploads/2017/07/2783-title-treatment-portrait-key-art-normal-medium-683x1024.jpg',
             price: 18,
@@ -176,7 +176,7 @@ export const SHOP_DATA =  [
             release_date: "2004",
           },
           {
-            id: 11,
+            id: 21,
             name: 'Ponyo',
             imageUrl: 'https://www.studioghibli.com.au/wp-content/uploads/2017/07/2783-title-treatment-portrait-key-art-normal-medium-683x1024.jpg',
             price: 18,
@@ -186,7 +186,7 @@ export const SHOP_DATA =  [
             release_date: "2008",
           },
           {
-            id: 12,
+            id: 22,
             name: 'The Wind Rises',
             imageUrl: 'https://www.studioghibli.com.au/wp-content/uploads/2017/07/poster_wind_rises-683x1024.jpg',
             price: 18,
@@ -196,7 +196,7 @@ export const SHOP_DATA =  [
             release_date: "2013",
           },
           {
-            id: 14,
+            id: 23,
             name: "The Tale of the Princess Kaguya",
             imageUrl: 'https://i.ibb.co/ZBnDFvv/Kaguya.jpg',
             price: 25,
