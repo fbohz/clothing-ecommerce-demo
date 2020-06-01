@@ -5,8 +5,10 @@ import {connect} from 'react-redux'
 import {ReactComponent as Logo } from '../../src/assets/ghibli.svg'
 
 import { auth } from '../firebase/firebase.utils'
+import CartIcon from '../components/shop/CartIcon'
+import CartDropdown from '../components/shop/CartDropdown'
 
-const Header = ({ currentUser }) => {
+const Header = ({ currentUser, hidden }) => {
     return (
         <HeaderStyle>
             <Link to="/" className="logo-container">
@@ -21,13 +23,18 @@ const Header = ({ currentUser }) => {
                    : 
                    <Link className="option" to="/signin">LOGIN</Link>
                  }
+                 <CartIcon />
             </div>
+                {
+                  hidden ? null : <CartDropdown />
+                }
         </HeaderStyle>
     )
 }
 
-const msp = state => ({
-  currentUser: state.user.currentUser,
+const msp = ({user: {currentUser}, cart: {hidden}}) => ({
+  currentUser,
+  hidden,
 })
 
 export default connect(msp)(Header)
