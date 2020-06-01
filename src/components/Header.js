@@ -1,6 +1,7 @@
 import React from "react";
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
 import {ReactComponent as Logo } from '../../src/assets/ghibli.svg'
 
 import { auth } from '../firebase/firebase.utils'
@@ -25,7 +26,11 @@ const Header = ({ currentUser }) => {
     )
 }
 
-export default Header
+const msp = state => ({
+  currentUser: state.user.currentUser,
+})
+
+export default connect(msp)(Header)
 
 const HeaderStyle = styled.div`
   height: 70px;
