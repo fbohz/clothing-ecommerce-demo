@@ -1,5 +1,5 @@
-export const SHOP_DATA =  [
-    {
+export const SHOP_DATA =  {
+  memorabilia: {
       id: 1,
       title: 'Memorabilia',
       routeName: 'memorabilia',
@@ -60,7 +60,7 @@ export const SHOP_DATA =  [
         }
       ]
     },
-    {
+    films: {
         id: 2,
         title: 'Selected Films (Inc. Digital + BluRay/DVD + Movie Poster)',
         routeName: 'films',
@@ -208,5 +208,5 @@ export const SHOP_DATA =  [
         ]
       },
     
-]
+    }
 
