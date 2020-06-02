@@ -60,3 +60,17 @@ export const selectCollections = createSelector(
   [selectShop],
   shop => shop.collections
 )
+
+const COLLECTION_ID_MAP = {
+  memorabilia: 1,
+  films: 2,
+}
+
+export const selectCollection = collectionUrlParam => createSelector(
+  [selectCollections],
+  collections =>
+    collections.find(
+      collection => collection.id === COLLECTION_ID_MAP[collectionUrlParam]
+    )
+
+)
