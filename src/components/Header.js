@@ -13,9 +13,10 @@ import {selectCartHidden, selectCurrentUser} from '../utils/selectors'
 const Header = ({ currentUser, hidden }) => {
     return (
         <HeaderStyle>
-            <Link to="/" className="logo-container">
-                <Logo className="logo"/>
-            </Link>
+            <a href="https://github.com/fbohz" className="logo-container" target="_blank" rel="noopener noreferrer">
+                <Logo className="logo"/><br></br>
+            <small><i>For fans, by a fan</i></small>
+            </a>
             <div className="options">
                  <Link to="/shop" className="option" >SHOP</Link>
                  <Link to="/shop" className="option" >ABOUT</Link>
