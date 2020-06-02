@@ -51,3 +51,12 @@ export const selectDirectorySections = createSelector(
   [selectDirectory],
   directory => directory.sections
 )
+
+// SHOP SELECTORS
+
+const selectShop = state => state.shop
+
+export const selectCollections = createSelector(
+  [selectShop],
+  shop => shop.collections
+)
