@@ -14,17 +14,18 @@ const Header = ({ currentUser, hidden }) => {
     return (
         <HeaderStyle>
             <a href="https://github.com/fbohz" className="logo-container" target="_blank" rel="noopener noreferrer">
-                <Logo className="logo"/><br></br>
-            <small><i>For fans, by a fan</i></small>
+                <Logo className="logo"/>
+            <small><b>FOR FANS BY A FAN</b></small>
             </a>
             <div className="options">
+                <Link to="/" className="option" >HOME</Link>
                  <Link to="/shop" className="option" >SHOP</Link>
                  <Link to="/shop" className="option" >ABOUT</Link>
                  {
                    currentUser ? 
                    <div className="option" onClick={() => auth.signOut()}>LOGOUT</div> 
                    : 
-                   <Link className="option" to="/signin">LOGIN</Link>
+                   <Link className="option" to="/signin"> LOGIN</Link>
                  }
                  <CartIcon />
             </div>
@@ -51,7 +52,7 @@ const HeaderStyle = styled.div`
 
   .logo-container {
     height: 100%;
-    width: 70px;
+    width: 85px;
     padding: 25px;
   }
 /* 

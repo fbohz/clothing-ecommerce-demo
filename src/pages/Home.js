@@ -11,7 +11,7 @@ const HomeStyle = styled.div`
 
 const Home = () => {
     return (
-        <HomeStyle>
+        <HomeStyle><br></br><br></br>
             <DirectoryMenu/>
         </HomeStyle>
     )
