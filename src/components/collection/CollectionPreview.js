@@ -2,10 +2,17 @@ import React from "react";
 import styled from 'styled-components'
 import CollectionItem from './CollectionItem'
 
-const CollectionPreview = ({title, items}) => {
+import {Link} from 'react-router-dom'
+
+
+const CollectionPreview = ({title, items, routeName}) => {
     return (
         <CollectionStyle>
-            <h1 className="title">{title.toUpperCase()}</h1>
+            <h1 className="title">
+              <Link to={`shop/${routeName}`}>
+                {title.toUpperCase()}
+              </Link>
+            </h1>
             <div className="preview">
                 {
                     items
@@ -30,6 +37,7 @@ const CollectionStyle = styled.div`
   .title {
     font-size: 28px;
     margin-bottom: 25px;
+    cursor: pointer;
   }
 
   .preview {

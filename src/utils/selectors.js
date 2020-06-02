@@ -52,7 +52,7 @@ export const selectDirectorySections = createSelector(
   directory => directory.sections
 )
 
-// SHOP SELECTORS
+// SHOP AND COLLECTIONS SELECTORS
 
 const selectShop = state => state.shop
 
@@ -60,6 +60,12 @@ export const selectCollections = createSelector(
   [selectShop],
   shop => shop.collections
 )
+
+export const selectCollectionsForPreview = createSelector(
+  [selectCollections],
+  // get back an array from collections object.
+  collections => Object.keys(collections).map(key => collections[key])
+);
 
 export const selectCollection = collectionUrlParam => createSelector(
   [selectCollections],

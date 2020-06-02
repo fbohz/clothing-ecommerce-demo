@@ -4,7 +4,7 @@ import CollectionPreview from './CollectionPreview'
 import {connect} from 'react-redux'
 
 import {createStructuredSelector} from 'reselect'
-import {selectCollections} from '../../utils/selectors'
+import {selectCollectionsForPreview} from '../../utils/selectors'
 
 
 const CollectionsOverview = ({collections}) => {
@@ -20,7 +20,7 @@ const CollectionsOverview = ({collections}) => {
 }
 
 const msp = createStructuredSelector({
-    collections: selectCollections,
+    collections: selectCollectionsForPreview,
   })
 
 export default connect(msp)(CollectionsOverview)
