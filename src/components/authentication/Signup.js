@@ -59,7 +59,7 @@ class Signup extends React.Component {
         const { displayName, email, password, confirmPassword } = this.state;
 
         return (
-          <SignUpContainer>
+          <SignUpContainer><br></br>
             <SignUpTitle>I do not have a account</SignUpTitle>
             <span>Sign up with your email and password</span>
             <span style={{color: 'red'}}>{this.state.formError ? this.state.formError.message : null }</span>

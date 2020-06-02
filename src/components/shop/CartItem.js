@@ -6,7 +6,7 @@ const CartItem = ({item: {imageUrl, price, name, quantity}}) => {
         <CartItemStyle>
             <img src={imageUrl} alt='item' />
             <div className="item-details">
-                <span className='name'>{name}</span>
+                <span className='name'>{name}</span><br></br>
                 <span className='price'>{quantity} x ${price}</span>
             </div>
 
@@ -26,7 +26,7 @@ const CartItemStyle = styled.div`
     width: 30%;
   }
 
-  .item-details {
+  &.item-details {
     width: 70%;
     display: flex;
     flex-direction: column;
@@ -34,7 +34,7 @@ const CartItemStyle = styled.div`
     justify-content: center;
     padding: 10px 20px;
 
-    .name {
+    &.name {
       font-size: 16px;
     }
   }
