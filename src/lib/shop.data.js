@@ -24,7 +24,7 @@ export const SHOP_DATA =  {
         },
         {
           id: 4,
-          name: "Howl's Moving Castle Toy Collection",
+          name: "Howl's Moving Castle Collection Toys",
           imageUrl: 'https://i.ibb.co/09fJpq4/Howl-s-Moving-Castle-Toys.png',
           price: 29
         },
