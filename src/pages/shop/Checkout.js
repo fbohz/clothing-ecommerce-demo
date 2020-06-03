@@ -33,7 +33,7 @@ const Checkout = ({ cartItems, total }) => (
       <div className='test-warning'>
         *Please use the following TEST Credit Card for payments*
         <br />
-        4242424242424242 Exp 12/2050 CVC 123
+        4242424242424242 | Exp 12/2050 | CVC 123
       </div>
       <StripeBtn price={total} />
     </CheckoutStyle>
