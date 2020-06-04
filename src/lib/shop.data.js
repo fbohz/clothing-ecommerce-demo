@@ -36,7 +36,7 @@ export const SHOP_DATA =  {
         },
         {
           id: 6,
-          name: 'Porco Rosso Mug Trendy',
+          name: 'Porco Rosso Mug (Trendy)',
           imageUrl: 'https://i.ibb.co/GsC63bD/porco-guevara.jpg',
           price: 14
         },
@@ -54,7 +54,7 @@ export const SHOP_DATA =  {
         },
         {
           id: 9,
-          name: 'Princess Monoke Hardwood Mask (Hand Made)',
+          name: 'Princess Mononoke Hardwood Mask (Hand Made)',
           imageUrl: 'https://i.ibb.co/LJyQKv6/mononoke-mask.jpg',
           price: 150
         }
