@@ -1,4 +1,4 @@
-import {SET_CURRENT_USER, TOGGLE_CART_HIDDEN, ADD_ITEM, CLEAR_ITEM_FROM_CART, REMOVE_ITEM} from './types'
+import {SET_CURRENT_USER, TOGGLE_CART_HIDDEN, ADD_ITEM, CLEAR_ITEM_FROM_CART, REMOVE_ITEM, UPDATE_COLLECTIONS} from './types'
 
 export const setCurrentUser = user => {
     return {type: SET_CURRENT_USER,  payload: user}
@@ -22,4 +22,9 @@ export const removeItem = item => ({
 export const clearItemFromCart = item => ({
     type: CLEAR_ITEM_FROM_CART,
     payload: item,
+})
+
+export const updateCollections = collectionsMap => ({
+    type: UPDATE_COLLECTIONS,
+    payload: collectionsMap
 })
