@@ -9,7 +9,7 @@ import withSpinner from '../../components/spinner/withSpinner'
 import {createStructuredSelector} from 'reselect'
 
 import {fetchCollectionsStartAsync} from '../../redux/actions/actions'
-import {selectIsCollectionFetching} from '../../utils/selectors'
+import {selectIsCollectionFetching, selectIsCollectionsLoaded} from '../../utils/selectors'
 
 // this gives a new component wrapped around CollectionsOverview
 const CollectionsOverviewWithSpinner = withSpinner(CollectionsOverview)
@@ -24,7 +24,7 @@ class ShopPage extends React.Component {
 
 
   render() {
-        const { match, isCollectionFetching } = this.props
+        const { match, isCollectionFetching, isCollectionsLoaded } = this.props
         return (
         <ShopStyle><br></br><br></br>
         
@@ -33,7 +33,9 @@ class ShopPage extends React.Component {
           isLoading={isCollectionFetching} {...props} />}
          />
         <Route path={`${match.path}/:collectionId`} 
-          render={props => <CollectionPageWithSpinner isLoading={isCollectionFetching} {...props} />}
+          render={props => <CollectionPageWithSpinner 
+          // isCollectionsLoaded needs to be reversed because of the spinner.
+          isLoading={!isCollectionsLoaded} {...props} />}
          />
         
         </ShopStyle>
@@ -42,7 +44,8 @@ class ShopPage extends React.Component {
 }
 
 const msp = createStructuredSelector({
-  isCollectionFetching: selectIsCollectionFetching
+  isCollectionFetching: selectIsCollectionFetching,
+  isCollectionsLoaded:selectIsCollectionsLoaded,
 })
 
 const mdp = dispatch => ({
