@@ -1,4 +1,6 @@
-import {SET_CURRENT_USER, TOGGLE_CART_HIDDEN, ADD_ITEM, CLEAR_ITEM_FROM_CART, REMOVE_ITEM, UPDATE_COLLECTIONS} from './types'
+import {SET_CURRENT_USER, TOGGLE_CART_HIDDEN, ADD_ITEM, CLEAR_ITEM_FROM_CART, REMOVE_ITEM, FETCH_COLLECTIONS_START, FETCH_COLLECTIONS_SUCCESS, FETCH_COLLECTIONS_FAILURE} from './types'
+
+import {firestore, convertCollectionsSnapshotToMap} from '../../firebase/firebase.utils'
 
 export const setCurrentUser = user => {
     return {type: SET_CURRENT_USER,  payload: user}
@@ -24,7 +26,29 @@ export const clearItemFromCart = item => ({
     payload: item,
 })
 
-export const updateCollections = collectionsMap => ({
-    type: UPDATE_COLLECTIONS,
+export const fetchCollectionsStart = () => ({
+    type: FETCH_COLLECTIONS_START,
+})
+
+export const fetchCollectionsFailure = errorMsg => ({
+    type: FETCH_COLLECTIONS_FAILURE,
+    payload: errorMsg
+})
+
+export const fetchCollectionsStartAsync = () => {
+    return dispatch => {
+        const collectionRef = firestore.collection('collections');
+        // this is done b/c of redux-thunk
+        dispatch(fetchCollectionsStart())
+
+        collectionRef.get().then(snapshot => {
+          const collectionsMap = convertCollectionsSnapshotToMap(snapshot)
+          dispatch(fetchCollectionsSuccess(collectionsMap))
+        }).catch(error => dispatch(fetchCollectionsFailure(error.message)))
+    }
+}
+
+export const fetchCollectionsSuccess= collectionsMap => ({
+    type: FETCH_COLLECTIONS_SUCCESS,
     payload: collectionsMap
 })
