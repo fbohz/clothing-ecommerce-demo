@@ -1,5 +1,5 @@
 // for Demo purposes. Backend is on Firebase.
-const SHOP_DATA =  {
+export const SHOP_DATA =  {
   memorabilia: {
       id: 1,
       title: 'Memorabilia',
@@ -63,7 +63,7 @@ const SHOP_DATA =  {
     },
     films: {
         id: 2,
-        title: 'Selected Films (Inc. Digital + BluRay/DVD + Movie Poster)',
+        title: 'Films',
         routeName: 'films',
         items: [
           {
@@ -109,6 +109,16 @@ const SHOP_DATA =  {
           {
             id: 14,
             name: "Kiki's Delivery Service",
+            imageUrl: 'https://www.studioghibli.com.au/wp-content/uploads/2017/07/1479-title-treatment-portrait-key-art-normal-medium-683x1024.jpg',
+            price: 18,
+            description: "It’s 1982, and Taeko is 27 years old, unmarried, and has lived her whole life in Tokyo. She decides to visit her family in the countryside, and as the train travels through the night, memories flood back of her younger years: the first immature stirrings of romance, the onset of puberty, and the frustrations of math and boys. At the station she is met by young farmer Toshio, and the encounters with him begin to reconnect her to forgotten longings. In lyrical switches between the present and the past, Taeko contemplates the arc of her life, and wonders if she has been true to the dreams of her childhood self.",
+            director: "Isao Takahata",
+            producer: "Toshio Suzuki",
+            release_date: "1991",
+          },
+          {
+            id: 15,
+            name: "Only Yesterday",
             imageUrl: 'https://www.studioghibli.com.au/wp-content/uploads/2017/07/poster_kiki-683x1024.jpg',
             price: 18,
             description: "A young witch, on her mandatory year of independent life, finds fitting into a new community difficult while she supports herself by running an air courier service.",
@@ -117,7 +127,7 @@ const SHOP_DATA =  {
             release_date: "1989",
           },
           {
-            id: 15,
+            id: 16,
             name: "Porco Rosso",
             imageUrl: 'https://www.studioghibli.com.au/wp-content/uploads/2017/07/poster_porco_rosso-683x1024.jpg',
             price: 18,
@@ -127,7 +137,17 @@ const SHOP_DATA =  {
             release_date: "1992",
           },
           {
-            id: 16,
+            id: 17,
+            name: "Pom Poko",
+            imageUrl: 'https://www.studioghibli.com.au/wp-content/uploads/2017/07/1482-title-treatment-portrait-key-art-normal-medium-683x1024.jpg',
+            price: 18,
+            description: "As the human city development encroaches on the raccoon population's forest and meadow habitat, the raccoons find themselves faced with the very real possibility of extinction. In response, the raccoons engage in a desperate struggle to stop the construction and preserve their home.",
+            director: "Isao Takahata",
+            producer: "Toshio Suzuki",
+            release_date: "1994",
+          },
+          {
+            id: 18,
             name: "Whisper of the Heart",
             imageUrl: 'https://www.studioghibli.com.au/wp-content/uploads/2017/07/1483-title-treatment-portrait-key-art-normal-medium-683x1024.jpg',
             price: 25,
@@ -137,7 +157,7 @@ const SHOP_DATA =  {
             release_date: "1995",
           },
           {
-            id: 17,
+            id: 19,
             name: "Princess Mononoke",
             imageUrl: 'https://www.studioghibli.com.au/wp-content/uploads/2017/06/poster_mononoke-683x1024.jpg',
             price: 18,
@@ -147,7 +167,7 @@ const SHOP_DATA =  {
             release_date: "1997",
           },
           {
-            id: 18,
+            id: 20,
             name: "Spirited Away",
             imageUrl: 'https://www.studioghibli.com.au/wp-content/uploads/2017/07/1055-title-treatment-portrait-key-art-normal-medium-683x1024.jpg',
             price: 25,
@@ -157,7 +177,7 @@ const SHOP_DATA =  {
             release_date: "2001",
           },
           {
-            id: 19,
+            id: 21,
             name: "The Cat Returns",
             imageUrl: 'https://www.studioghibli.com.au/wp-content/uploads/2017/07/poster_cat_returns-683x1024.jpg',
             price: 18,
@@ -167,7 +187,7 @@ const SHOP_DATA =  {
             release_date: "2002",
           },
           {
-            id: 20,
+            id: 22,
             name: "Howl's Moving Castle",
             imageUrl: 'https://www.studioghibli.com.au/wp-content/uploads/2017/07/2783-title-treatment-portrait-key-art-normal-medium-683x1024.jpg',
             price: 18,
@@ -177,7 +197,7 @@ const SHOP_DATA =  {
             release_date: "2004",
           },
           {
-            id: 21,
+            id: 23,
             name: 'Ponyo',
             imageUrl: 'https://www.studioghibli.com.au/wp-content/uploads/2017/07/14815-title-treatment-portrait-key-art-normal-medium-683x1024.jpg',
             price: 18,
@@ -187,7 +207,7 @@ const SHOP_DATA =  {
             release_date: "2008",
           },
           {
-            id: 22,
+            id: 24,
             name: 'The Wind Rises',
             imageUrl: 'https://www.studioghibli.com.au/wp-content/uploads/2017/07/poster_wind_rises-683x1024.jpg',
             price: 18,
@@ -197,7 +217,7 @@ const SHOP_DATA =  {
             release_date: "2013",
           },
           {
-            id: 23,
+            id: 25,
             name: "The Tale of the Princess Kaguya",
             imageUrl: 'https://i.ibb.co/ZBnDFvv/Kaguya.jpg',
             price: 25,
