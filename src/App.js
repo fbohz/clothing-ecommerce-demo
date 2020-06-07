@@ -4,11 +4,12 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import {connect} from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
+import Header from './components/Header'
 import Home from './pages/Home'
 import ShopPage from  './pages/shop/Shop'
-import Header from './components/Header'
 import LoginLogout from './pages/users/LoginLogout'
 import Checkout from './pages/shop/Checkout'
+import CharacterNews from './pages/CharacterNews'
 
 import {setCurrentUser} from './redux/actions/actions'
 import {selectCurrentUser} from './utils/selectors'

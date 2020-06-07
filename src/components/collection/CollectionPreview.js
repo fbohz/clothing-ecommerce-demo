@@ -8,7 +8,7 @@ import {Link} from 'react-router-dom'
 const CollectionPreview = ({title, items, routeName}) => {
     return (
         <CollectionStyle>
-            <h1 className="title">
+            <h1 className="ghibli-title">
               <Link to={`shop/${routeName}`}>
                 {title.toUpperCase()}
               </Link>
@@ -34,10 +34,11 @@ const CollectionStyle = styled.div`
   flex-direction: column;
   margin-bottom: 30px;
 
-  .title {
+  .ghibli-title {
     font-size: 28px;
     margin-bottom: 25px;
     cursor: pointer;
+    font-family: "Open Sans Condensed", sans-serif;
   }
 
   .preview {
