@@ -16,47 +16,32 @@ import {selectCurrentUser} from './utils/selectors'
 
 import { auth, createUserProfileDocument } from './firebase/firebase.utils'
 
-
-// 1. Uncomment and use for populating db ONLY. After use comment back.
-import { addCollectionAndDocuments } from './firebase/firebase.utils'
-//import {selectCollectionsForPreview} from './utils/selectors'
-import {SHOP_DATA} from './lib/shop.data'
-
 class App extends React.Component {
 
   unsubscribeFromAuth = null
 
-  // 2. Uncomment and use for populating db only. UNCOMMENT other componentDidMount! After use comment back.
   componentDidMount() {
-    const {collectionsArray } = this.props;
-    addCollectionAndDocuments('collections', SHOP_DATA.map(
-      ({title, items}) => ({title,items}) 
-      ))
+    const { setCurrentUser } = this.props;
+
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+
+        userRef.onSnapshot(snapShot => {
+          setCurrentUser({
+            id: snapShot.id,
+            ...snapShot.data()
+          });
+        });
+      }
+
+      setCurrentUser(userAuth);
+    });
   }
 
-  // componentDidMount() {
-  //   const { setCurrentUser } = this.props;
-
-  //   this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-  //     if (userAuth) {
-  //       const userRef = await createUserProfileDocument(userAuth);
-
-  //       userRef.onSnapshot(snapShot => {
-  //         setCurrentUser({
-  //           id: snapShot.id,
-  //           ...snapShot.data()
-  //         });
-  //       });
-  //     }
-
-  //     setCurrentUser(userAuth);
-  //   });
-  // }
-
-  // 3. Uncomment and use for populating db ONLY. After use comment back.
-  // componentWillUnmount() {
-  //   this.unsubscribeFromAuth()
-  // } 
+  componentWillUnmount() {
+    this.unsubscribeFromAuth()
+  } 
 
   render() {
     return (
@@ -77,9 +62,6 @@ class App extends React.Component {
 
 const msp = createStructuredSelector({
   currentUser: selectCurrentUser,
-  // 3. Uncomment and use for populating db only. After use comment back.
-  // collectionsArray: selectCollectionsForPreview,
-
 })
 
 const mdp = dispatch => ({
