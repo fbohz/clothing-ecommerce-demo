@@ -15,10 +15,14 @@ const News = (props) => {
 
         
         const fetchData = async () => {
-
-        let response = await fetch(endpoint);
-        let data = await response.json()
-        setResults(data.articles)
+            try {
+                let response = await fetch(endpoint);
+                let data = await response.json()
+                setResults(data.articles)
+                
+              } catch(e) {
+                console.log(e);
+              }
         }
         fetchData();
         // eslint-disable-next-line
@@ -30,8 +34,8 @@ const News = (props) => {
             {
                 results && results.length > 0 ?
                     results.map((result, idx) => (
-                    <React.Fragment >
-                    <StyledCard className="w3-card-4 w3-center" key={idx} style={{width: "60%", }}>
+                    <React.Fragment key={idx}>
+                    <StyledCard className="w3-card-4 w3-center"  style={{width: "60%", }}>
 
                         <header className="w3-container w3-light-blue" style={{padding: "10px"}}>
                             <h4>{result.source.name} </h4>
@@ -43,7 +47,7 @@ const News = (props) => {
                             <hr/>
                             <p>{result.description}</p>
                         </div>
-                        <footer class="w3-container w3-blue">
+                        <footer className="w3-container w3-blue">
                                 <a href={`${result.url}`} target="_blank" rel="noopener noreferrer"><b>Go to article</b></a>  
                         </footer>
                     </StyledCard><br></br>

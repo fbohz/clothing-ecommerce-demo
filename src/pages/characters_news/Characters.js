@@ -25,8 +25,8 @@ const Characters = (props) => {
             {
                 results.length > 0 ?
                     results.map((result, idx) => (
-                    <React.Fragment >
-                    <StyledCard className="w3-card-4 w3-center" key={idx} style={{width: "60%", }}>
+                    <React.Fragment key={idx} >
+                    <StyledCard className="w3-card-4 w3-center" style={{width: "60%", }}>
 
                     <header className="w3-container w3-light-blue">
                         <h3>{result.name}</h3>
