@@ -1,46 +1,49 @@
 import React, {useState, useEffect} from "react";
 import styled from 'styled-components'
-import moment from 'moment'
 
 const Characters = (props) => {
     const {match} = props
     const title = match.path.replace("/","")
     const [results, setResults] = useState([])
-    const [endpoint, setEndpoint] = useState("")
 
     useEffect(() => {
-        if (title === "news") {
-            const date = moment().subtract(1, 'month').add(1, 'day').format().split("T")[0]
-            const endpoint = `http://newsapi.org/v2/everything?q=studio+ghibli&from=${date}&sortBy=publishedAt&apiKey=deea81cb1db240e2ae23c1f3ca12c585`
-            // setEndpoint(`http://newsapi.org/v2/everything?q=studio+ghibli&from=${date}&sortBy=publishedAt&apiKey=deea81cb1db240e2ae23c1f3ca12c585`)
-
-        } else {
-            const endpoint = "https://ghibliapi.herokuapp.com/people"
-            // setEndpoint("https://ghibliapi.herokuapp.com/people")
-            console.log(endpoint)
-        }
+        const endpoint = "https://ghibliapi.herokuapp.com/people"
         
         const fetchData = async () => {
 
         let response = await fetch(endpoint);
         let data = await response.json()
-        // setResults(data)
-        console.log(data)
-        // data && data.articles ? setResults(data.articles) : setResults(data)
+        setResults(data)
         }
         fetchData();
         // eslint-disable-next-line
     },[])
 
-    const conditionalReturn = () => {
-       
-    }
-
     return (
         <div>
             <Title className="w3-center">{title.toUpperCase()}</Title>
-            {conditionalReturn()}
-            {results.length > 0 ? "loaded!" : "wait"}
+            {
+                results.length > 0 ?
+                    results.map((result, idx) => (
+                    <React.Fragment >
+                    <StyledCard className="w3-card-4 w3-center" key={idx} style={{width: "60%", }}>
+
+                    <header className="w3-container w3-light-blue">
+                        <h3>{result.name}</h3>
+                    </header>
+                    <div className="w3-container">
+                        <p><b>Gender:</b> {result.gender} &nbsp; <b>Age:</b> {result.age}</p>
+                        <hr/>
+                        <a href={`${result.species}`}><b>Species</b></a> | 
+                        <a href={`${result.films[0]}`}><b>Films</b></a>
+                        </div><br></br>
+                    </StyledCard><br></br>
+                    </React.Fragment>
+                
+                     )) : 
+                "loading..."
+            }
+
         </div>
     )
 }
@@ -52,3 +55,7 @@ const Title = styled.h2`
   margin: 0 auto 30px;
   font-family: "Open Sans Condensed", sans-serif;
 `;
+
+const StyledCard = styled.div`
+    margin: 0 auto;
+`
