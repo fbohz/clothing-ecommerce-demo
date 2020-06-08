@@ -2,7 +2,7 @@ import React from "react";
 import styled from 'styled-components'
 import { withRouter } from 'react-router-dom'
 
-const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => (
+const MenuItem = ({ title, imageUrl, size, history, linkUrl, match, subtitle }) => (
   <MenuItemContainer
     size={size}
     onClick={() => history.push(`${match.url}${linkUrl}`)}
@@ -13,7 +13,7 @@ const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => (
     />
     <ContentContainer className='content'>
       <ContentTitle>{title.toUpperCase()}</ContentTitle>
-      <ContentSubtitle>SHOP NOW</ContentSubtitle>
+      <ContentSubtitle>{subtitle ? subtitle : null}</ContentSubtitle>
     </ContentContainer>
   </MenuItemContainer>
 );
