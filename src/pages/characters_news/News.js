@@ -9,8 +9,8 @@ const News = (props) => {
     const [results, setResults] = useState([])
 
     useEffect(() => {
-        const date = moment().subtract(1, 'month').add(1, 'day').format().split("T")[0]
-        const endpoint = `http://newsapi.org/v2/everything?q=studio+ghibli&from=${date}&sortBy=publishedAt&apiKey=deea81cb1db240e2ae23c1f3ca12c585`
+        const date = moment().subtract(1, 'month').format().split("T")[0]
+        const endpoint = `https://newsapi.org/v2/everything?q=studio+ghibli&from=${date}&sortBy=publishedAt&apiKey=deea81cb1db240e2ae23c1f3ca12c585`
 
 
         
