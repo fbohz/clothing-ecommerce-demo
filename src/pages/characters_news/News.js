@@ -39,7 +39,7 @@ const News = (props) => {
                     <StyledCard className="w3-card-4 w3-center" key={idx} style={{width: "60%", }}>
 
                         <header className="w3-container w3-light-blue" style={{padding: "10px"}}>
-                            <h4><b></b> {result.source.name} </h4>
+                            <h4>{result.source.name} </h4>
         
                             <img src={result.urlToImage ? result.urlToImage : IMG} alt="newsImg" style={{width: "60%"}} />
                         </header><br></br>
