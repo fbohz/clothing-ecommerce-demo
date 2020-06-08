@@ -28,7 +28,7 @@ const News = (props) => {
         <div>
             <Title className="w3-center">{title.toUpperCase()}</Title>
             {
-                results.length > 0 ?
+                results && results.length > 0 ?
                     results.map((result, idx) => (
                     <React.Fragment >
                     <StyledCard className="w3-card-4 w3-center" key={idx} style={{width: "60%", }}>
