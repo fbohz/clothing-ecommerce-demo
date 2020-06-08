@@ -11,13 +11,13 @@ const INITIAL_STATE =  {
             title: 'characters',
             imageUrl: 'https://i.ibb.co/xHSCYkX/characters.jpg',
             id: 2,
-            linkUrl: 'info/characters'
+            linkUrl: 'characters'
         },
         {
             title: 'latest news',
             imageUrl: 'https://i.ibb.co/bRVtBYz/news-nausicaa.jpg',
             id: 3,
-            linkUrl: 'info/news'
+            linkUrl: 'news'
         },
         {
           title: 'selected films',
