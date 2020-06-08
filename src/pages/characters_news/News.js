@@ -24,14 +24,9 @@ const News = (props) => {
         // eslint-disable-next-line
     },[])
 
-    const conditionalReturn = () => {
-       
-    }
-
     return (
         <div>
             <Title className="w3-center">{title.toUpperCase()}</Title>
-            {conditionalReturn()}
             {
                 results.length > 0 ?
                     results.map((result, idx) => (
