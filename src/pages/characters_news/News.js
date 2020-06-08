@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react";
 import styled from 'styled-components'
-import moment from 'moment'
 import IMG from "../../assets/placeholderIMG.jpeg"
 
 const News = (props) => {
@@ -9,8 +8,8 @@ const News = (props) => {
     const [results, setResults] = useState([])
 
     useEffect(() => {
-        const date = moment().subtract(1, 'month').format().split("T")[0]
-        const endpoint = `https://newsapi.org/v2/everything?q=studio+ghibli&from=${date}&sortBy=publishedAt&apiKey=deea81cb1db240e2ae23c1f3ca12c585`
+
+        const endpoint = `https://gnews.io/api/v3/search?q=studio+ghibli&f&token=cb5f6fe6e968c229353b1cc90cc8d042`
 
 
         
@@ -40,7 +39,7 @@ const News = (props) => {
                         <header className="w3-container w3-light-blue" style={{padding: "10px"}}>
                             <h4>{result.source.name} </h4>
         
-                            <img src={result.urlToImage ? result.urlToImage : IMG} alt="newsImg" style={{width: "60%"}} />
+                            <img src={result.image ? result.image : IMG} alt="newsImg" style={{width: "60%"}} />
                         </header><br></br>
                         <div className="w3-container">
                             <h5>{result.title}</h5>
