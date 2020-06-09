@@ -1,4 +1,4 @@
-import { takeEvery, call, put } from 'redux-saga/effects'
+import { all, takeLatest, call, put } from 'redux-saga/effects'
 import {firestore, convertCollectionsSnapshotToMap} from '../../firebase/firebase.utils'
 
 import {FETCH_COLLECTIONS_START} from '../actions/types'
@@ -24,9 +24,23 @@ export function* fetchCollectionsAsync() {
 }
 
 export function* fetchCollectionsStart() {
-    // pause when this action happens
-    yield takeEvery(FETCH_COLLECTIONS_START, fetchCollectionsAsync)
+    // pause when this action happens. takeLatest best option.
+    yield takeLatest(FETCH_COLLECTIONS_START, fetchCollectionsAsync)
 }
 
 
 //
+
+
+
+
+
+// ROOT SAGA - if you add new saga you want to listen add it below and then on store as it is import will update it.
+
+export default function* rootSaga() {
+    yield all([
+        call(
+        fetchCollectionsStart
+        )
+    ])
+}
