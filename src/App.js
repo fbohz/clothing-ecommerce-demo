@@ -11,6 +11,7 @@ import LoginLogout from './pages/users/LoginLogout'
 import Checkout from './pages/shop/Checkout'
 import Characters from './pages/characters_news/Characters'
 import News from './pages/characters_news/News'
+import NotFound from '../src/components/NotFound'
 
 import {selectCurrentUser} from './utils/selectors'
 import {checkUserSession} from './redux/actions/actions'
@@ -41,6 +42,7 @@ class App extends React.Component {
           <Route exact path="/news" component={News}/>
           <Route exact path="/login" render={() => this.props.currentUser ?  <Redirect to="/" /> : <LoginLogout />
           } />
+          <Route component={NotFound} /> 
         </Switch>
       </AppStyle>
     );
