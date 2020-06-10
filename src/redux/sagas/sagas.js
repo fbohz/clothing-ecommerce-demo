@@ -40,6 +40,10 @@ export function* fetchCollectionsStart() {
     yield takeLatest(FETCH_COLLECTIONS_START, fetchCollectionsAsync)
 }
 
+export function* shopSagas() {
+    yield all([call(fetchCollectionsStart)]);
+  }
+
 
 // USER SAGAS
 
@@ -171,7 +175,7 @@ export function* clearCartOnSignOut() {
 
 export default function* rootSaga() {
     yield all([
-        call(fetchCollectionsStart),
+        call(shopSagas),
         call(userSagas),
         call(cartSagas),
     ])

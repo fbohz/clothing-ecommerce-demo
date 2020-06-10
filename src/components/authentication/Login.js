@@ -13,7 +13,7 @@ class Login extends React.Component {
         this.state = {
             email: '',
             password: '',
-            formError: '',
+            // formError: '',
         }
     }
 
@@ -31,13 +31,13 @@ class Login extends React.Component {
     }
     
     render() {
-        const {googleStart} = this.props
+        const {googleStart, error} = this.props
         return (
             <LoginStyle>
                 <br/>
                 <h2>I already have an account</h2>
                 <span>Login with your email and password</span>
-                <span style={{color: 'red'}}>{this.state.formError ? this.state.formError.message : null }</span>
+                <span style={{color: 'red'}}>{error ? error.message : null }</span>
 
                 <form onSubmit={this.handleSubmit}>
                     <FormInput 
@@ -61,12 +61,16 @@ class Login extends React.Component {
     }
 }
 
+const msp = state => ({
+    error: state.user.error
+})
+
 const mdp = dispatch => ({
     googleStart: () => dispatch(googleStart()),
     emailStart: (email, psw) => dispatch(emailStart({ email, psw }))
 })
 
-export default connect(null,mdp)(Login)
+export default connect(msp,mdp)(Login)
 
 const LoginStyle = styled.div`
     width: 380px;
