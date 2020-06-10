@@ -1,9 +1,10 @@
 import React from "react";
+import {connect} from 'react-redux'
 import styled from 'styled-components'
 import FormInput from './FormInput'
 import CustomButton from '../CustomButton'
 
-import { auth, signInWithGoogle } from '../../firebase/firebase.utils'
+import {googleStart, emailStart} from '../../redux/actions/actions'
 
 class Login extends React.Component {
     constructor(props) {
@@ -18,21 +19,9 @@ class Login extends React.Component {
 
     handleSubmit = async e => {
         e.preventDefault()
-
+        const {emailStart} = this.props
         const { email, password } = this.state
-
-        try {
-            await auth.signInWithEmailAndPassword(email, password)
-            this.setState({email: '', password: ''})
-
-        } catch (error) {
-            console.error(error);
-            this.setState({
-                ...this.state,
-                formError: error
-            })
-          }
-
+        emailStart(email, password)
     }
 
     handleChange = e => {
@@ -42,6 +31,7 @@ class Login extends React.Component {
     }
     
     render() {
+        const {googleStart} = this.props
         return (
             <LoginStyle>
                 <br/>
@@ -60,7 +50,8 @@ class Login extends React.Component {
 
                     <ButtonsBarContainer>
                         <CustomButton type='submit'> Login </CustomButton>
-                        <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
+                        <CustomButton type="button" 
+                        onClick={googleStart} isGoogleSignIn>
                         Login with Google
                         </CustomButton>
                     </ButtonsBarContainer>
@@ -68,9 +59,14 @@ class Login extends React.Component {
             </LoginStyle>
         )
     }
-    }
+}
 
-export default Login
+const mdp = dispatch => ({
+    googleStart: () => dispatch(googleStart()),
+    emailStart: (email, psw) => dispatch(emailStart({ email, psw }))
+})
+
+export default connect(null,mdp)(Login)
 
 const LoginStyle = styled.div`
     width: 380px;
