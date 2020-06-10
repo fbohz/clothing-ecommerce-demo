@@ -30,6 +30,35 @@ export const checkUserSession = () => ({
     type: LoginTypes.CHECK_USER_SESSION
 })
 
+export const signOutStart = () => ({
+    type: LoginTypes.SIGN_OUT_START
+  });
+  
+  export const signOutSuccess = () => ({
+    type: LoginTypes.SIGN_OUT_SUCCESS
+  });
+  
+  export const signOutFailure = error => ({
+    type: LoginTypes.SIGN_OUT_FAILURE,
+    payload: error
+  });
+  
+  export const signUpStart = userCredentials => ({
+    type: LoginTypes.SIGN_UP_START,
+    payload: userCredentials
+  });
+  
+  export const signUpSuccess = ({ user, additionalData }) => ({
+    type: LoginTypes.SIGN_UP_SUCCESS,
+    payload: { user, additionalData }
+  });
+  
+  export const signUpFailure = error => ({
+    type: LoginTypes.SIGN_UP_FAILURE,
+    payload: error
+  });
+  
+
 // shop and cart actions
 
 // this is the same as above but since () no return explicit needed.

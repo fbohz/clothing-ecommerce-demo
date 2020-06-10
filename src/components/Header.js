@@ -10,7 +10,9 @@ import CartIcon from '../components/shop/CartIcon'
 import CartDropdown from '../components/shop/CartDropdown'
 import {selectCartHidden, selectCurrentUser} from '../utils/selectors'
 
-const Header = ({ currentUser, hidden }) => (
+import {signOutStart} from '../redux/actions/actions'
+
+const Header = ({ currentUser, hidden, signOutStart }) => (
   <HeaderContainer>
     <LogoContainer to='https://github.com/fbohz'>
       <Logo className='logo' />
@@ -22,7 +24,7 @@ const Header = ({ currentUser, hidden }) => (
       <OptionLink to="/news">NEWS</OptionLink>
 
       {currentUser ? (
-        <OptionLink as='div' onClick={() => auth.signOut()}>
+        <OptionLink as='div' onClick={signOutStart}>
           LOGOUT
         </OptionLink>
       ) : (
@@ -39,7 +41,11 @@ const msp = createStructuredSelector({
   hidden: selectCartHidden,
 })
 
-export default connect(msp)(Header)
+const mdp = dispatch => ({
+  signOutStart: () =>  dispatch(signOutStart())
+})
+
+export default connect(msp,mdp)(Header)
 
 const HeaderContainer = styled.div`
   height: 70px;
