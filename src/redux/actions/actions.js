@@ -1,4 +1,4 @@
-import {SET_CURRENT_USER, TOGGLE_CART_HIDDEN, ADD_ITEM, CLEAR_ITEM_FROM_CART, REMOVE_ITEM, FETCH_COLLECTIONS_START, FETCH_COLLECTIONS_SUCCESS, FETCH_COLLECTIONS_FAILURE, LoginTypes} from './types'
+import {SET_CURRENT_USER, TOGGLE_CART_HIDDEN, ADD_ITEM, CLEAR_ITEM_FROM_CART, REMOVE_ITEM, FETCH_COLLECTIONS_START, FETCH_COLLECTIONS_SUCCESS, FETCH_COLLECTIONS_FAILURE, LoginTypes, CLEAR_CART} from './types'
 
 import {firestore, convertCollectionsSnapshotToMap} from '../../firebase/firebase.utils'
 
@@ -80,6 +80,10 @@ export const clearItemFromCart = item => ({
     type: CLEAR_ITEM_FROM_CART,
     payload: item,
 })
+
+export const clearCart = () => ({
+    type: CLEAR_CART
+  });
 
 export const fetchCollectionsStart = () => ({
     type: FETCH_COLLECTIONS_START,

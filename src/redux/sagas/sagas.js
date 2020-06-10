@@ -2,7 +2,7 @@ import { all, takeLatest, call, put } from 'redux-saga/effects'
 import {firestore, convertCollectionsSnapshotToMap} from '../../firebase/firebase.utils'
 
 import {FETCH_COLLECTIONS_START} from '../actions/types'
-import {fetchCollectionsSuccess, fetchCollectionsFailure} from '../actions/actions'
+import {fetchCollectionsSuccess, fetchCollectionsFailure, clearCart} from '../actions/actions'
 
 import {LoginTypes} from '../actions/types'
 import {auth, googleProvider, createUserProfileDocument, getCurrentUser} from '../../firebase/firebase.utils'
@@ -152,6 +152,20 @@ export function* userSagas() {
     ])
 }
 
+// CART Sagas
+
+export function* clearCartOnSignOut() {
+    yield put(clearCart());
+  }
+  
+  export function* onSignOutSuccess() {
+    yield takeLatest(LoginTypes.SIGN_OUT_SUCCESS, clearCartOnSignOut);
+  }
+  
+  export function* cartSagas() {
+    yield all([call(onSignOutSuccess)]);
+  }
+
 
 // ROOT SAGA - if you add new saga you want to listen add it below and then on store as it is import will update it.
 
@@ -159,5 +173,6 @@ export default function* rootSaga() {
     yield all([
         call(fetchCollectionsStart),
         call(userSagas),
+        call(cartSagas),
     ])
 }
