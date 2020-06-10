@@ -35,9 +35,9 @@ class Login extends React.Component {
         return (
             <LoginStyle>
                 <br/>
+                <span style={{color: 'red'}}>{error ? `ERROR: ${error.message}` : null }</span><br></br>
                 <h2>I already have an account</h2>
                 <span>Login with your email and password</span>
-                <span style={{color: 'red'}}>{error ? error.message : null }</span>
 
                 <form onSubmit={this.handleSubmit}>
                     <FormInput 
