@@ -11,13 +11,13 @@ export const googleStart = () => ({
     type: LoginTypes.GOOGLE_START
 })
 
-export const googleSuccess = user => ({
-    type: LoginTypes.GOOGLE_OK,
+export const loginSuccess = user => ({
+    type: LoginTypes.OK,
     payload: user
 })
 
-export const googleFailure = e => ({
-    type: LoginTypes.GOOGLE_FAILURE,
+export const loginFailure = e => ({
+    type: LoginTypes.FAILURE,
     payload: e
 })
 
@@ -26,14 +26,8 @@ export const emailStart = emailPsw => ({
     payload: emailPsw
 })
 
-export const emailSuccess = user => ({
-    type: LoginTypes.EMAIL_OK,
-    payload: user
-})
-
-export const emailFailure = e => ({
-    type: LoginTypes.EMAIL_FAILURE,
-    payload: e
+export const checkUserSession = () => ({
+    type: LoginTypes.CHECK_USER_SESSION
 })
 
 // shop and cart actions

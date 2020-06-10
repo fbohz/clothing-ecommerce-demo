@@ -1,12 +1,12 @@
 import { all, takeLatest, call, put } from 'redux-saga/effects'
 import {firestore, convertCollectionsSnapshotToMap} from '../../firebase/firebase.utils'
-import {googleSuccess, googleFailure, emailSuccess, emailFailure} from '../actions/actions'
+import {loginSuccess, loginFailure} from '../actions/actions'
 
 import {FETCH_COLLECTIONS_START} from '../actions/types'
 import {fetchCollectionsSuccess, fetchCollectionsFailure} from '../actions/actions'
 
 import {LoginTypes} from '../actions/types'
-import {auth, googleProvider, createUserProfileDocument} from '../../firebase/firebase.utils'
+import {auth, googleProvider, createUserProfileDocument, getCurrentUser} from '../../firebase/firebase.utils'
 
 // SHOP SAGAS
 
@@ -35,17 +35,25 @@ export function* fetchCollectionsStart() {
 
 // USER SAGAS
 
-export function* loginGoogle() {
+export function* getSnapShotFromUserAuth(userAuth, additionalData) {
     try {
-        const {user} = yield auth.signInWithPopup(googleProvider)
-        const userRef = yield call(createUserProfileDocument, user)
+        const userRef = yield call(createUserProfileDocument, userAuth, additionalData)
         const userSnapshot = yield userRef.get()
 
         yield put(
-            googleSuccess({id: userSnapshot.id, ...userSnapshot.data() })
+            loginSuccess({id: userSnapshot.id, ...userSnapshot.data() })
         )
     } catch(e) {
-        yield put(googleFailure(e))
+        yield put(loginFailure(e))
+    }
+}
+
+export function* loginGoogle() {
+    try {
+        const {user} = yield auth.signInWithPopup(googleProvider)
+        yield getSnapShotFromUserAuth(user)
+    } catch(e) {
+        yield put(loginFailure(e))
     }
 }
 
@@ -56,24 +64,38 @@ export function* onGoogleStart() {
 export function* loginEmail({payload: {email,psw}}) {
     try {
         const {user} = yield auth.signInWithEmailAndPassword(email, psw)
-        const userRef = yield call(createUserProfileDocument, user)
-        const userSnapshot = yield userRef.get()
+        yield getSnapShotFromUserAuth(user)
 
-        yield put(
-            emailSuccess({id: userSnapshot.id, ...userSnapshot.data() })
-        )
     } catch(e){
-        yield put(emailFailure(e))
+        yield put(loginFailure(e))
     }
 
 }
 
 export function* onEmailStart() {
-    yield takeLatest(LoginTypes.EMAIL_START, )
+    yield takeLatest(LoginTypes.EMAIL_START, loginEmail)
+}
+
+export function* isUserAuthenticated() {
+    try {
+      const userAuth = yield getCurrentUser();
+      if (!userAuth) return;
+      yield getSnapShotFromUserAuth(userAuth);
+    } catch (error) {
+      yield put(loginFailure(error));
+    }
+  }
+
+export function* onCheckUserSession() {
+    yield takeLatest(LoginTypes.CHECK_USER_SESSION, isUserAuthenticated)
 }
 
 export function* userSagas() {
-    yield all([call(onGoogleStart), call(onEmailStart)])
+    yield all([
+        call(onGoogleStart), 
+        call(onEmailStart),
+        call(onCheckUserSession),
+    ])
 }
 
 
