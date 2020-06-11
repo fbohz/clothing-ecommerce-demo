@@ -29,13 +29,18 @@ class Login extends React.Component {
 
        this.setState({[name]: value })
     }
+
+    handleError = e => {
+        window.scrollTo(0,0)
+        return  `ERROR ${e}`
+    }
     
     render() {
         const {googleStart, error} = this.props
         return (
             <LoginStyle>
                 <br/>
-                <span style={{color: 'red'}}>{error ? `ERROR: ${error.message}` : null }</span><br></br>
+                <span style={{color: 'red'}}>{error ? this.handleError(error.message) : null }</span>
                 <h2>I already have an account</h2>
                 <span>Login with your email and password</span>
 
