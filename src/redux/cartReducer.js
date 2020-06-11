@@ -1,4 +1,4 @@
-import {TOGGLE_CART_HIDDEN, ADD_ITEM, CLEAR_ITEM_FROM_CART, REMOVE_ITEM} from './actions/types'
+import {TOGGLE_CART_HIDDEN, ADD_ITEM, CLEAR_ITEM_FROM_CART, REMOVE_ITEM, CLEAR_CART} from './actions/types'
 import {addItemToCart, removeItemFromCart} from '../utils/utils'
 
 const INITIAL_STATE = {
@@ -29,6 +29,11 @@ const cartReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 cartItems: removeItemFromCart(state.cartItems, action.payload)
             }
+        case CLEAR_CART:
+            return {
+                ...state,
+                cartItems: []
+            };
         default: 
             return state;
     }

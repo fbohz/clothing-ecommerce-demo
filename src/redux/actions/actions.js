@@ -1,4 +1,4 @@
-import {SET_CURRENT_USER, TOGGLE_CART_HIDDEN, ADD_ITEM, CLEAR_ITEM_FROM_CART, REMOVE_ITEM, FETCH_COLLECTIONS_START, FETCH_COLLECTIONS_SUCCESS, FETCH_COLLECTIONS_FAILURE, LoginTypes} from './types'
+import {SET_CURRENT_USER, TOGGLE_CART_HIDDEN, ADD_ITEM, CLEAR_ITEM_FROM_CART, REMOVE_ITEM, FETCH_COLLECTIONS_START, FETCH_COLLECTIONS_SUCCESS, FETCH_COLLECTIONS_FAILURE, LoginTypes, CLEAR_CART} from './types'
 
 import {firestore, convertCollectionsSnapshotToMap} from '../../firebase/firebase.utils'
 
@@ -11,14 +11,18 @@ export const googleStart = () => ({
     type: LoginTypes.GOOGLE_START
 })
 
-export const googleSuccess = user => ({
-    type: LoginTypes.GOOGLE_OK,
+export const loginSuccess = user => ({
+    type: LoginTypes.OK,
     payload: user
 })
 
-export const googleFailure = e => ({
-    type: LoginTypes.GOOGLE_FAILURE,
+export const loginFailure = e => ({
+    type: LoginTypes.FAILURE,
     payload: e
+})
+
+export const clearError = () => ({
+  type: LoginTypes.CLEAR_ERROR
 })
 
 export const emailStart = emailPsw => ({
@@ -26,15 +30,38 @@ export const emailStart = emailPsw => ({
     payload: emailPsw
 })
 
-export const emailSuccess = user => ({
-    type: LoginTypes.EMAIL_OK,
-    payload: user
+export const checkUserSession = () => ({
+    type: LoginTypes.CHECK_USER_SESSION
 })
 
-export const emailFailure = e => ({
-    type: LoginTypes.EMAIL_FAILURE,
-    payload: e
-})
+export const signOutStart = () => ({
+    type: LoginTypes.SIGN_OUT_START
+  });
+  
+  export const signOutSuccess = () => ({
+    type: LoginTypes.SIGN_OUT_SUCCESS
+  });
+  
+  export const signOutFailure = error => ({
+    type: LoginTypes.SIGN_OUT_FAILURE,
+    payload: error
+  });
+  
+  export const signUpStart = userCredentials => ({
+    type: LoginTypes.SIGN_UP_START,
+    payload: userCredentials
+  });
+  
+  export const signUpSuccess = ({ user, additionalData }) => ({
+    type: LoginTypes.SIGN_UP_SUCCESS,
+    payload: { user, additionalData }
+  });
+  
+  export const signUpFailure = error => ({
+    type: LoginTypes.SIGN_UP_FAILURE,
+    payload: error
+  });
+  
 
 // shop and cart actions
 
@@ -57,6 +84,10 @@ export const clearItemFromCart = item => ({
     type: CLEAR_ITEM_FROM_CART,
     payload: item,
 })
+
+export const clearCart = () => ({
+    type: CLEAR_CART
+  });
 
 export const fetchCollectionsStart = () => ({
     type: FETCH_COLLECTIONS_START,

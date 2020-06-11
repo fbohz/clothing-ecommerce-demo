@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import FormInput from './FormInput'
 import CustomButton from '../CustomButton'
 
-import {googleStart, emailStart} from '../../redux/actions/actions'
+import {googleStart, emailStart, clearError} from '../../redux/actions/actions'
 
 class Login extends React.Component {
     constructor(props) {
@@ -13,7 +13,14 @@ class Login extends React.Component {
         this.state = {
             email: '',
             password: '',
-            formError: '',
+            // formError: '',
+        }
+    }
+
+    componentDidMount(){
+        const {clearError} = this.props
+        if (this.props.error) {
+            clearError()
         }
     }
 
@@ -29,15 +36,20 @@ class Login extends React.Component {
 
        this.setState({[name]: value })
     }
+
+    handleError = e => {
+        window.scrollTo(0,0)
+        return  `ERROR ${e}`
+    }
     
     render() {
-        const {googleStart} = this.props
+        const {googleStart, error} = this.props
         return (
             <LoginStyle>
                 <br/>
+                <span style={{color: 'red'}}>{error ? this.handleError(error.message) : null }</span>
                 <h2>I already have an account</h2>
                 <span>Login with your email and password</span>
-                <span style={{color: 'red'}}>{this.state.formError ? this.state.formError.message : null }</span>
 
                 <form onSubmit={this.handleSubmit}>
                     <FormInput 
@@ -61,12 +73,17 @@ class Login extends React.Component {
     }
 }
 
-const mdp = dispatch => ({
-    googleStart: () => dispatch(googleStart()),
-    emailStart: (email, psw) => dispatch(emailStart({ email, psw }))
+const msp = state => ({
+    error: state.user.error
 })
 
-export default connect(null,mdp)(Login)
+const mdp = dispatch => ({
+    googleStart: () => dispatch(googleStart()),
+    emailStart: (email, psw) => dispatch(emailStart({ email, psw })),
+    clearError: () => dispatch(clearError())
+})
+
+export default connect(msp,mdp)(Login)
 
 const LoginStyle = styled.div`
     width: 380px;

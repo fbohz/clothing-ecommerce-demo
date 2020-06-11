@@ -11,38 +11,22 @@ import LoginLogout from './pages/users/LoginLogout'
 import Checkout from './pages/shop/Checkout'
 import Characters from './pages/characters_news/Characters'
 import News from './pages/characters_news/News'
+import NotFound from '../src/components/NotFound'
 
-import {setCurrentUser} from './redux/actions/actions'
 import {selectCurrentUser} from './utils/selectors'
-
-
-import { auth, createUserProfileDocument } from './firebase/firebase.utils'
+import {checkUserSession} from './redux/actions/actions'
 
 class App extends React.Component {
 
   unsubscribeFromAuth = null
 
   componentDidMount() {
-    const { setCurrentUser } = this.props;
-
-  //   this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-  //     if (userAuth) {
-  //       const userRef = await createUserProfileDocument(userAuth);
-
-  //       userRef.onSnapshot(snapShot => {
-  //         setCurrentUser({
-  //           id: snapShot.id,
-  //           ...snapShot.data()
-  //         });
-  //       });
-  //     }
-
-  //     setCurrentUser(userAuth);
-  //   });
-  // }
+    const {checkUserSession} = this.props
+    checkUserSession()
+}
 
   componentWillUnmount() {
-    this.unsubscribeFromAuth()
+    // this.unsubscribeFromAuth()
   } 
 
   render() {
@@ -58,18 +42,19 @@ class App extends React.Component {
           <Route exact path="/news" component={News}/>
           <Route exact path="/login" render={() => this.props.currentUser ?  <Redirect to="/" /> : <LoginLogout />
           } />
+          <Route component={NotFound} /> 
         </Switch>
       </AppStyle>
     );
   }
 }
 
-const msp = createStructuredSelector({
-  currentUser: selectCurrentUser,
+const mdp = dispatch => ({
+  checkUserSession: () => dispatch(checkUserSession())
 })
 
-const mdp = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
+const msp = createStructuredSelector({
+  currentUser: selectCurrentUser,
 })
 
 export default connect(msp, mdp)(App);
