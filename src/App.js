@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import {connect} from 'react-redux'
@@ -16,20 +16,12 @@ import NotFound from '../src/components/NotFound'
 import {selectCurrentUser} from './utils/selectors'
 import {checkUserSession} from './redux/actions/actions'
 
-class App extends React.Component {
+const App = ({ checkUserSession, currentUser }) => {
+    // behaves like componentDidMount
+    useEffect(() => {
+      checkUserSession()
+    }, [checkUserSession])
 
-  unsubscribeFromAuth = null
-
-  componentDidMount() {
-    const {checkUserSession} = this.props
-    checkUserSession()
-}
-
-  componentWillUnmount() {
-    // this.unsubscribeFromAuth()
-  } 
-
-  render() {
     return (
       <AppStyle>
         <Header />
@@ -40,14 +32,13 @@ class App extends React.Component {
           <Route exact path="/checkout" component={Checkout}/>
           <Route exact path="/characters" component={Characters}/>
           <Route exact path="/news" component={News}/>
-          <Route exact path="/login" render={() => this.props.currentUser ?  <Redirect to="/" /> : <LoginLogout />
+          <Route exact path="/login" render={() => currentUser ?  <Redirect to="/" /> : <LoginLogout />
           } />
           <Route component={NotFound} /> 
         </Switch>
       </AppStyle>
     );
   }
-}
 
 const mdp = dispatch => ({
   checkUserSession: () => dispatch(checkUserSession())

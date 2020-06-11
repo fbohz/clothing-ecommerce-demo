@@ -5,7 +5,6 @@ import {connect} from 'react-redux'
 import {ReactComponent as Logo } from '../../src/assets/ghibli.svg'
 import { createStructuredSelector } from 'reselect'
 
-// import { auth } from '../firebase/firebase.utils'
 import CartIcon from '../components/shop/CartIcon'
 import CartDropdown from '../components/shop/CartDropdown'
 import {selectCartHidden, selectCurrentUser} from '../utils/selectors'
