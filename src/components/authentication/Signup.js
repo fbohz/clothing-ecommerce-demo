@@ -103,4 +103,5 @@ const SignUpContainer = styled.div`
 
 const SignUpTitle = styled.h2`
   margin: 10px 0;
+  font-family: 'Open Sans Condensed';
 `;

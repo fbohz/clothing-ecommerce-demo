@@ -48,7 +48,7 @@ class Login extends React.Component {
             <LoginStyle>
                 <br/>
                 <span style={{color: 'red'}}>{error ? this.handleError(error.message) : null }</span>
-                <h2>I already have an account</h2>
+                <SignInTitle>I already have an account</SignInTitle>
                 <span>Login with your email and password</span>
 
                 <form onSubmit={this.handleSubmit}>
@@ -93,6 +93,10 @@ const LoginStyle = styled.div`
     .title {
         margin: 10px 0;
     }
+`
+const SignInTitle = styled.h2`
+  margin: 10px 0;
+  font-family: 'Open Sans Condensed';
 `
 
 const ButtonsBarContainer = styled.div`
