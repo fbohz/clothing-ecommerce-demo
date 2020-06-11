@@ -17,7 +17,7 @@ import {selectCurrentUser} from './utils/selectors'
 import {checkUserSession} from './redux/actions/actions'
 
 const App = ({ checkUserSession, currentUser }) => {
-    // behaves like componentDidMount
+    // behaves like componentDidMount avoids missing dependency warning
     useEffect(() => {
       checkUserSession()
     }, [checkUserSession])

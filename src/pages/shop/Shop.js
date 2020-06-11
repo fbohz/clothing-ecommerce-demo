@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components'
 import { Route } from 'react-router-dom'
 import {connect} from 'react-redux'
@@ -9,15 +9,10 @@ import CollectionPageContainer from '../collection/CollectionContainer'
 import {fetchCollectionsStart} from '../../redux/actions/actions'
 
 
-class ShopPage extends React.Component {
-  componentDidMount() {
-    const { fetchCollectionsStart } = this.props;
-
+const ShopPage = ({ fetchCollectionsStart, match }) => {
+  useEffect(() => {
     fetchCollectionsStart();
-  }
-
-  render() {
-    const { match } = this.props;
+  }, [fetchCollectionsStart])
 
     return (
       <ShopStyle><br></br><br></br>
@@ -33,8 +28,6 @@ class ShopPage extends React.Component {
       </ShopStyle>
     );
   }
-}
-
 
 const mdp = dispatch => ({
   fetchCollectionsStart: () => dispatch(fetchCollectionsStart())
