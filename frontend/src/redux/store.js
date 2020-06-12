@@ -4,7 +4,7 @@ import {persistStore} from 'redux-persist'
 import createSagaMiddleware from 'redux-saga'
 import rootReducer from './rootReducer'
 
-import rootSaga from '../redux/sagas/sagas'
+import rootSaga from './sagas/sagas'
 
 const sagaMiddleware = createSagaMiddleware()
 

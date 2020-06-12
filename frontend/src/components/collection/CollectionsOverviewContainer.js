@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
-import CollectionsOverview from '../../components/collection/CollectionsOverview'
-import withSpinner from '../../components/spinner/withSpinner'
+import CollectionsOverview from './CollectionsOverview'
+import withSpinner from '../spinner/withSpinner'
 import {createStructuredSelector} from 'reselect'
 import {compose} from 'redux'
 

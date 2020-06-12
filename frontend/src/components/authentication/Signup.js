@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import styled from 'styled-components'
 
 import CustomButton from '../CustomButton'
-import FormInput from '../authentication/FormInput'
+import FormInput from './FormInput'
 
 import {signUpStart} from '../../redux/actions/actions'
 

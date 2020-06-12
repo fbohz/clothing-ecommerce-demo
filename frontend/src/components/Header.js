@@ -2,11 +2,11 @@ import React from "react";
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {ReactComponent as Logo } from '../../src/assets/ghibli.svg'
+import {ReactComponent as Logo } from '../assets/ghibli.svg'
 import { createStructuredSelector } from 'reselect'
 
-import CartIcon from '../components/shop/CartIcon'
-import CartDropdown from '../components/shop/CartDropdown'
+import CartIcon from './shop/CartIcon'
+import CartDropdown from './shop/CartDropdown'
 import {selectCartHidden, selectCurrentUser} from '../utils/selectors'
 
 import {signOutStart} from '../redux/actions/actions'

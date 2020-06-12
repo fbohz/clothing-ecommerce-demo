@@ -11,7 +11,7 @@ import LoginLogout from './pages/users/LoginLogout'
 import Checkout from './pages/shop/Checkout'
 import Characters from './pages/characters_news/Characters'
 import News from './pages/characters_news/News'
-import NotFound from '../src/components/NotFound'
+import NotFound from './components/NotFound'
 
 import {selectCurrentUser} from './utils/selectors'
 import {checkUserSession} from './redux/actions/actions'
