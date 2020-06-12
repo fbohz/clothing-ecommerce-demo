@@ -1,11 +1,12 @@
-import React from "react";
+import React, {useContext} from "react";
 import styled from 'styled-components'
-import {connect} from 'react-redux'
 
 import CollectionItem from '../../components/collection/CollectionItem'
-import {selectCollection} from '../../utils/selectors'
+import CollectionsContext from '../../contexts/collections/collections.context'
 
-const Collection = ({collection}) => {
+const Collection = ({match}) => {
+  const collections = useContext(CollectionsContext)
+  const collection = collections[match.params.collectionId]
   const {title, items} = collection
 
     return (
@@ -22,12 +23,7 @@ const Collection = ({collection}) => {
     )
 }
 
-const msp = (state, ownProps) => ({
-  // selectColleciton is a function selector that returns a function (currying)
-  collection: selectCollection(ownProps.match.params.collectionId)(state)
-})
-
-export default connect(msp)(Collection)
+export default Collection
 
 const CollectionStyle = styled.div`
   display: flex;

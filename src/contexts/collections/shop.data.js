@@ -1,5 +1,5 @@
 // for Demo purposes. Backend is on Firebase.
-const SHOP_DATA =  {
+export const SHOP_DATA =  {
   memorabilia: {
       id: 1,
       title: 'Memorabilia',

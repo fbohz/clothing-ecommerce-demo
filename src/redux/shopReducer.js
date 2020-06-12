@@ -1,33 +1,14 @@
-import {FETCH_COLLECTIONS_START, FETCH_COLLECTIONS_SUCCESS, FETCH_COLLECTIONS_FAILURE} from '../redux/actions/types'
+import {SHOP_DATA} from '../contexts/collections/shop.data';
 
 const INITIAL_STATE = {
-    collections: null,
-    isFetching: false,
-    errorMsg: undefined
-}
+  collections: SHOP_DATA
+};
 
 const shopReducer = (state = INITIAL_STATE, action) => {
-    switch(action.type) {
-        case FETCH_COLLECTIONS_START:
-            return {
-                ...state,
-                isFetching: true,
-            }
-        case FETCH_COLLECTIONS_SUCCESS:
-            return {
-                ...state,
-                isFetching: false,
-                collections: action.payload
-            }
-        case FETCH_COLLECTIONS_FAILURE:
-            return {
-                ...state,
-                isFetching: false,
-                errorMsg: action.payload
-            }
-        default:
-            return state;
-    }
-}
+  switch (action.type) {
+    default:
+      return state;
+  }
+};
 
-export default shopReducer
+export default shopReducer;
