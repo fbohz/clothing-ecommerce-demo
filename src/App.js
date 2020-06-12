@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
 import { Route, Switch, Redirect } from 'react-router-dom'
-import {connect} from 'react-redux'
-import { createStructuredSelector } from 'reselect'
 
 import Home from './pages/Home'
 import ShopPage from  './pages/shop/Shop'
@@ -10,32 +8,37 @@ import Header from './components/Header'
 import LoginLogout from './pages/users/LoginLogout'
 import Checkout from './pages/shop/Checkout'
 
-import {setCurrentUser} from './redux/actions/actions'
-import {selectCurrentUser} from './utils/selectors'
-
 
 import { auth, createUserProfileDocument } from './firebase/firebase.utils'
+import CurrentUserContext from './contexts/current-user/current-user.context';
 
 class App extends React.Component {
+  constructor() {
+    super();
 
-  unsubscribeFromAuth = null
+    this.state = {
+      currentUser: null
+    };
+  }
+
+  unsubscribeFromAuth = null;
 
   componentDidMount() {
-    const { setCurrentUser } = this.props;
-
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
 
         userRef.onSnapshot(snapShot => {
-          setCurrentUser({
-            id: snapShot.id,
-            ...snapShot.data()
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
           });
         });
       }
 
-      setCurrentUser(userAuth);
+      this.setState({ currentUser: userAuth });
     });
   }
 
@@ -46,13 +49,15 @@ class App extends React.Component {
   render() {
     return (
       <AppStyle>
-        <Header />
+        <CurrentUserContext.Provider value={this.state.currentUser}>
+          <Header />
+        </CurrentUserContext.Provider>
   
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route path="/shop" component={ShopPage}/>
           <Route exact path="/checkout" component={Checkout}/>
-          <Route exact path="/login" render={() => this.props.currentUser ?  <Redirect to="/" /> : <LoginLogout />
+          <Route exact path="/login" render={() => this.state.currentUser ?  <Redirect to="/" /> : <LoginLogout />
           } />
         </Switch>
       </AppStyle>
@@ -60,15 +65,7 @@ class App extends React.Component {
   }
 }
 
-const msp = createStructuredSelector({
-  currentUser: selectCurrentUser,
-})
-
-const mdp = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
-})
-
-export default connect(msp, mdp)(App);
+export default App;
 
 
 const AppStyle = styled.div`

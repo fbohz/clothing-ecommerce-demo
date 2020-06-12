@@ -1,16 +1,20 @@
-import React from "react";
+import React, {useContext} from "react";
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
-import {connect} from 'react-redux'
 import {ReactComponent as Logo } from '../../src/assets/ghibli.svg'
-import { createStructuredSelector } from 'reselect'
 
 import { auth } from '../firebase/firebase.utils'
 import CartIcon from '../components/shop/CartIcon'
 import CartDropdown from '../components/shop/CartDropdown'
-import {selectCartHidden, selectCurrentUser} from '../utils/selectors'
 
-const Header = ({ currentUser, hidden }) => {
+import CurrentUserContext from '../contexts/current-user/current-user.context';
+import { CartContext } from '../providers/cart/cart.provider';
+
+
+const Header = () => {
+    const currentUser = useContext(CurrentUserContext);
+    const { hidden } = useContext(CartContext);
+
     return (
         <HeaderStyle>
             <a href="https://github.com/fbohz" className="logo-container" target="_blank" rel="noopener noreferrer">
@@ -36,12 +40,7 @@ const Header = ({ currentUser, hidden }) => {
     )
 }
 
-const msp = createStructuredSelector({
-  currentUser: selectCurrentUser,
-  hidden: selectCartHidden,
-})
-
-export default connect(msp)(Header)
+export default Header
 
 const HeaderStyle = styled.div`
   height: 70px;
