@@ -1,9 +1,7 @@
 import React, { useContext } from 'react';
 
 import styled from 'styled-components'
-import {connect} from 'react-redux'
 
-import {clearItemFromCart, addItem, removeItem} from '../../redux/actions/actions'
 import { CartContext } from '../../providers/cart/cart.provider';
 
 
@@ -33,13 +31,7 @@ const CheckoutItem = ({ cartItem }) => {
     )
 }
 
-const mdp = dispatch => ({
-    clearItem: item => dispatch(clearItemFromCart(item)),
-    addItem: item => dispatch(addItem(item)),
-    removeItem: item => dispatch(removeItem(item)),
-})
-
-export default connect(null, mdp)(CheckoutItem)
+export default CheckoutItem
 
 const CheckoutItemStyle = styled.div`
   width: 100%;
