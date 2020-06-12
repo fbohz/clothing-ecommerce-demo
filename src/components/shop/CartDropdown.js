@@ -1,14 +1,15 @@
-import React from "react";
+import React, {useContext} from "react";
 import styled from 'styled-components'
-import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 
 import CustomButton from '../CustomButton'
 import CartItem from './CartItem'
-import {selectCartItems} from '../../utils/selectors'
-import {toggleCartHidden} from '../../redux/actions/actions'
+import { CartContext } from '../../providers/cart/cart.provider';
 
-const CartDropdown = ({cartItems, history, dispatch}) => {
+
+const CartDropdown = ({history}) => {
+  const { cartItems, toggleHidden } = useContext(CartContext);
+
     return (
         <CartDropdownContainer>
             <CartItemsContainer>
@@ -21,21 +22,18 @@ const CartDropdown = ({cartItems, history, dispatch}) => {
             )}
             </CartItemsContainer>
         <CartDropdownButton 
-          onClick={() => {
-            history.push('/checkout')
-            dispatch(toggleCartHidden())
-          }}>
+            onClick={() => {
+              history.push('/checkout');
+              toggleHidden();
+            }}
+          >
             GO TO CHECKOUT
         </CartDropdownButton>
         </CartDropdownContainer>
     )
 }
 
-const msp = (state) => ({
-    cartItems: selectCartItems(state),
-})
-
-export default withRouter(connect(msp)(CartDropdown))
+export default withRouter(CartDropdown)
 
 const CartDropdownContainer = styled.div`
   position: absolute;

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from 'react';
+
 import styled from 'styled-components'
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -7,8 +8,12 @@ import {selectCartItems, selectCartTotal} from '../../utils/selectors'
 import CheckoutItem from '../../components/shop/CheckoutItem'
 import StripeBtn from '../../stripe/StripeBtn'
 
-const Checkout = ({ cartItems, total }) => (
-    <CheckoutStyle>
+import { CartContext } from '../../providers/cart/cart.provider';
+
+const Checkout = () => {
+  const { cartItems, cartTotal } = useContext(CartContext);
+  return (
+        <CheckoutStyle>
       <div className='checkout-header'>
         <div className='header-block'>
           <span>Product</span>
@@ -29,15 +34,17 @@ const Checkout = ({ cartItems, total }) => (
       {cartItems.map(cartItem => (
         <CheckoutItem key={cartItem.id} cartItem={cartItem} />
       ))}
-      <div className='total'>TOTAL: ${total}</div>
+      <div className='total'>TOTAL: ${cartTotal}</div>
       <div className='test-warning'>
         *Please use the following TEST Credit Card for payments*
         <br />
         4242424242424242 | Exp 12/2050 | CVC 123
       </div>
-      <StripeBtn price={total} />
+      <StripeBtn price={cartTotal} />
     </CheckoutStyle>
-  );
+  )
+
+  }
 
 const msp = createStructuredSelector({
     cartItems: selectCartItems,

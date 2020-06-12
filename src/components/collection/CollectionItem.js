@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useContext } from 'react';
 import styled from 'styled-components'
 
 import CustomButton from '../CustomButton'
-import {connect} from 'react-redux'
-import {addItem} from '../../redux/actions/actions'
+import { CartContext } from '../../providers/cart/cart.provider';
 
-const CollectionItem = ({ item, addItem }) => {
+const CollectionItem = ({ item }) => {
   const { name, price, imageUrl } = item;
+  const { addItem } = useContext(CartContext);
+
 
   return (
     <CollectionItemContainer>
@@ -22,11 +23,7 @@ const CollectionItem = ({ item, addItem }) => {
   );
 };
 
-const mdp = dispatch => ({
-  addItem: item => dispatch(addItem(item))
-})
-
-export default connect(null, mdp)(CollectionItem)
+export default CollectionItem
 
 const CollectionItemContainer = styled.div`
   width: 16vw;

@@ -1,27 +1,22 @@
-import React from "react";
+import React, {useContext} from "react";
 import styled from 'styled-components'
 
 import { ReactComponent as ShoppingIcon } from '../../assets/cart.svg'
-import {connect} from 'react-redux'
-import {toggleCartHidden} from '../../redux/actions/actions'
-import {selectCartItemsCount} from '../../utils/selectors'
 
-const CartIcon = ({ toggleCartHidden, itemCount }) => (
-    <CartContainer onClick={toggleCartHidden}>
+import { CartContext } from '../../providers/cart/cart.provider';
+
+const CartIcon = ({ itemCount }) => {
+  const { toggleHidden, cartItemsCount } = useContext(CartContext);
+
+  return (
+    <CartContainer onClick={toggleHidden}>
       <ShoppingIconStyles />
-      <ItemCountContainer>{itemCount}</ItemCountContainer>
+      <ItemCountContainer>{cartItemsCount}</ItemCountContainer>
     </CartContainer>
-  );
-
-const mdp = dispatch => ({
-    toggleCartHidden: () => dispatch(toggleCartHidden())
-})
-
-const msp = state => ({
-  itemCount: selectCartItemsCount(state)
-})
+  )
+}
   
-export default connect(msp, mdp)(CartIcon)
+export default CartIcon
 
 const CartContainer = styled.div`
   width: 45px;

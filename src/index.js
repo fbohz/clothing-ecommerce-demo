@@ -8,9 +8,11 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import {store, persistor } from './redux/store'
 import { PersistGate } from 'redux-persist/integration/react'
+import CartProvider from './providers/cart/cart.provider.jsx';
 
 ReactDOM.render(
   <React.StrictMode>
+    <CartProvider>
     <Provider store={store}>
       <BrowserRouter>
         <PersistGate persistor={persistor}>
@@ -18,6 +20,7 @@ ReactDOM.render(
         </PersistGate>
       </BrowserRouter>
     </Provider>
+    </CartProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
