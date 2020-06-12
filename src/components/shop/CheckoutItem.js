@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext } from 'react';
+
 import styled from 'styled-components'
 import {connect} from 'react-redux'
 
 import {clearItemFromCart, addItem, removeItem} from '../../redux/actions/actions'
+import { CartContext } from '../../providers/cart/cart.provider';
 
 
-const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
+const CheckoutItem = ({ cartItem }) => {
     const { name, imageUrl, price, quantity } = cartItem
+    const { addItem, removeItem, clearItemFromCart } = useContext(CartContext);
+
 
     return (
         <CheckoutItemStyle>
@@ -24,7 +28,7 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
                 </div>
             </span>
             <span className='price'>${price}</span>
-            <div className='remove-button' onClick={()=> clearItem(cartItem)}>&#10005;</div>
+            <div className='remove-button' onClick={()=> clearItemFromCart(cartItem)}>&#10005;</div>
         </CheckoutItemStyle>
     )
 }
