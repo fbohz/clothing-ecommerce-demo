@@ -1,1 +1,1 @@
-Run `yarn dev` from /backend directory.
+Run `yarn dev` from root directory.
