@@ -13,10 +13,10 @@ import {signOutStart} from '../redux/actions/actions'
 
 const Header = ({ currentUser, hidden, signOutStart }) => (
   <HeaderContainer>
-    <LogoContainer to='https://github.com/fbohz'>
+    <a href="https://github.com/fbohz" className="logo-container" target="_blank" rel="noopener noreferrer">
       <Logo className='logo' />
       <b>FOR FANS BY A FAN</b>
-    </LogoContainer>
+      </a>
     <OptionsContainer>
       <OptionLink to='/'>HOME</OptionLink>
       <OptionLink to='/shop'>SHOP</OptionLink>
@@ -58,9 +58,8 @@ const HeaderContainer = styled.div`
     padding: 10px;
     margin-bottom: 20px;
   }
-`;
 
-const LogoContainer = styled(Link)`
+.logo-container {
   height: 100%;
   width: 100px;
   padding: 25px;
@@ -68,6 +67,7 @@ const LogoContainer = styled(Link)`
   @media screen and (max-width: 800px) {
     width: 50px;
     padding: 0;
+  }
   }
 `;
 
