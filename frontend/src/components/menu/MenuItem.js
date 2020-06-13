@@ -47,6 +47,9 @@ const MenuItemContainer = styled.div`
   &:last-child {
     margin-left: 7.5px;
   }
+  @media screen and (max-width: 800px) {
+    width: 30vw;
+  }
 `;
 
 const BackgroundImageContainer = styled.div`
@@ -58,8 +61,7 @@ const BackgroundImageContainer = styled.div`
 `;
 
 const ContentContainer = styled.div`
-  height: 90px;
-  padding: 0 25px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -68,6 +70,16 @@ const ContentContainer = styled.div`
   background-color: white;
   opacity: 0.7;
   position: absolute;
+
+  @media screen and (max-width: 800px) {
+    height: 20vw;
+    padding: 0 13px;
+    }
+
+    @media screen and (min-width: 800px) {
+      height: 90px;
+      padding: 0 25px;
+    } 
 `;
 
 const ContentTitle = styled.span`

@@ -16,6 +16,8 @@ import NotFound from './components/NotFound'
 import {selectCurrentUser} from './utils/selectors'
 import {checkUserSession} from './redux/actions/actions'
 
+// import './index.css'
+
 const App = ({ checkUserSession, currentUser }) => {
     // behaves like componentDidMount avoids missing dependency warning
     useEffect(() => {
@@ -54,12 +56,13 @@ export default connect(msp, mdp)(App);
 const AppStyle = styled.div`
   font-family: 'Open Sans Condensed';
   padding: 20px 60px;
+  @media screen and (max-width: 800px) {
+      padding: 10px;
+    }
+    
   a {
     text-decoration: none;
     color: black;
   }
-  
-  /* * {
-    box-sizing: border-box;
-  } */
+
 `

@@ -14,7 +14,7 @@ const INITIAL_STATE =  {
             linkUrl: 'characters'
         },
         {
-            title: 'latest news',
+            title: 'news',
             imageUrl: 'https://i.ibb.co/bRVtBYz/news-nausicaa.jpg',
             id: 3,
             linkUrl: 'news'
