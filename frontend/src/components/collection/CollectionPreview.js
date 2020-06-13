@@ -13,7 +13,7 @@ const CollectionPreview = ({title, items, routeName}) => {
                 {title.toUpperCase()}
               </Link>
             </h1>
-            <div className="preview">
+            <PreviewContainer>
                 {
                     items
                     .filter((item, idx) => idx < 4)
@@ -21,7 +21,7 @@ const CollectionPreview = ({title, items, routeName}) => {
                         return <CollectionItem key={item.id} item={item}/>
                     })
                 }
-            </div>
+            </PreviewContainer>
 
         </CollectionStyle>
     )
@@ -34,15 +34,24 @@ const CollectionStyle = styled.div`
   flex-direction: column;
   margin-bottom: 30px;
 
+  @media screen and (max-width: 800px) {
+    align-items: center;
+  }
+
   .ghibli-title {
     font-size: 28px;
     margin-bottom: 25px;
     cursor: pointer;
     font-family: "Open Sans Condensed", sans-serif;
   }
+`
 
-  .preview {
-    display: flex;
-    justify-content: space-between;
+const PreviewContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  @media screen and (max-width: 800px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 15px;
   }
 `
