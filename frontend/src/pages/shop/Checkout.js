@@ -8,7 +8,7 @@ import CheckoutItem from '../../components/shop/CheckoutItem'
 import StripeBtn from '../../stripe/StripeBtn'
 
 const Checkout = ({ cartItems, total }) => (
-    <CheckoutPageContainer>
+    <CheckoutPageContainer><br></br>
       <CheckoutHeaderContainer>
         <HeaderBlockContainer>
           <span>Product</span>

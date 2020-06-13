@@ -6,7 +6,7 @@ import Signup from '../../components/authentication/Signup'
 
 const LoginLogout = () => {
     return (
-        <LoginLogoutStyle>
+        <LoginLogoutStyle><br></br>
             <Login />
             <Signup />
         </LoginLogoutStyle>
