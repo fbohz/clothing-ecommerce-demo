@@ -9,12 +9,12 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
     const { name, imageUrl, price, quantity } = cartItem
 
     return (
-        <CheckoutItemStyle>
-            <div className='image-container'>
+        <CheckoutItemContainer>
+            <ImageContainer>
             <img src={imageUrl} alt='item' />
-            </div>
-            <span className='name'>{name}</span>
-            <span className='quantity'>
+            </ImageContainer>
+            <TextContainer>{name}</TextContainer>
+            <QuantityContainer>
                 <div className='arrow' onClick={() => removeItem(cartItem)}>
                 &#10094;
                 </div>
@@ -22,10 +22,10 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
                 <div className='arrow' onClick={() => addItem(cartItem)}>
                 &#10095;
                 </div>
-            </span>
-            <span className='price'>${price}</span>
-            <div className='remove-button' onClick={()=> clearItem(cartItem)}>&#10005;</div>
-        </CheckoutItemStyle>
+            </QuantityContainer>
+            <TextContainer>${price}</TextContainer>
+            <RemoveButtonContainer onClick={()=> clearItem(cartItem)}>&#10005;</RemoveButtonContainer>
+        </CheckoutItemContainer>
     )
 }
 
@@ -37,7 +37,7 @@ const mdp = dispatch => ({
 
 export default connect(null, mdp)(CheckoutItem)
 
-const CheckoutItemStyle = styled.div`
+const CheckoutItemContainer = styled.div`
   width: 100%;
   display: flex;
   min-height: 100px;
@@ -45,36 +45,38 @@ const CheckoutItemStyle = styled.div`
   padding: 15px 0;
   font-size: 20px;
   align-items: center;
-
-  .image-container {
-    width: 23%;
-    padding-right: 15px;
-
-    img {
-      width: 100%;
-      height: 100%;
-    }
+  @media screen and (max-width: 800px) {
+    font-size: 18px;
   }
-  .name,
-  .quantity,
-  .price {
-    width: 23%;
+`;
+
+const ImageContainer = styled.div`
+  width: 23%;
+  padding-right: 15px;
+  img {
+    width: 100%;
+    height: 100%;
   }
+`;
 
-  .quantity {
-    display: flex;
-
-    .arrow {
-      cursor: pointer;
-    }
-
-    .value {
-      margin: 0 10px;
-    }
+const TextContainer = styled.span`
+  width: 23%;
+  @media screen and (max-width: 800px) {
+    width: 22%;
   }
+`;
 
-  .remove-button {
-    padding-left: 12px;
+const QuantityContainer = styled(TextContainer)`
+  display: flex;
+  span {
+    margin: 0 10px;
+  }
+  div {
     cursor: pointer;
   }
-`
+`;
+
+const RemoveButtonContainer = styled.div`
+  padding-left: 12px;
+  cursor: pointer;
+`;
